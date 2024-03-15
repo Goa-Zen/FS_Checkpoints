@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ch06_01_md_classes.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="tutorial---python-classes">TUTORIAL - PYTHON CLASSES</h1>
+<ol>
+<li>
+<p>Introducción</p>
+</li>
+<li>
+<p>¿Por qué son útiles?</p>
+</li>
+<li>
+<p>Palabras reservadas: Doble undersecored Methods o Dunder Methods</p>
+</li>
+<li>
+<p>Herencia</p>
+</li>
+<li>
+<p>Polimorfismo</p>
+</li>
+<li>
+<p>GET y SET en Python</p>
+</li>
+<li>
+<p>Decoradores en Python</p>
+</li>
+<li>
+<p>Code and Next Steps</p>
+</li>
+</ol>
+<h2 id="1-%C2%BFqu%C3%A9-es-una-clase-%C2%BFpor-qu%C3%A9-son-%C3%BAtiles">1. ¿Qué es una clase? ¿Por qué son útiles?</h2>
+<h3 id="11-introducci%C3%B3n">1.1. Introducción</h3>
+<p>Las clases son mapeadores de objetos, es decir, cuando creamos una clase, creamos un objeto al que asignamos unas propiedades y unos métodos.</p>
+<p>Por ejemplo, si lo que queremos crear es un objeto que represente a un libro, este libro tendrá unas características, como un author, el nombre del libro, un número de páginas, el nombre de la editorial que la publicó,.. etc</p>
+<h3 id="12-%C2%BFpor-qu%C3%A9-son-%C3%BAtiles">1.2. ¿Por qué son útiles?</h3>
+<p>Siguiendo con el ejemplo anterior, diríamos que un libro tiene estas variables o atributos asociados.</p>
+<pre class="hljs"><code><div>    book_name = 'Fiesta'
+    book_author = 'Ernest Hemingway'
+    book_pages = &quot;150&quot;
+    book_publisher = &quot;Pan Books&quot;
+</div></code></pre>
+<p>Si nosotros quisieramos declarar una clase Book que nos permitiera obtener objetos de esos libros nos ayudaría mucho, ya que todas las clases pueden disponer de data y de un comportamiento. Sigamos y lo veremos claramente.</p>
+<pre class="hljs"><code><div>    class Book:
+
+        def __init__(self, book_name, **kwargs):
+
+</div></code></pre>
+<p>Con la delcaración &quot;class Book&quot; hemos declarado una clase y con la siguiente función &quot;def <strong>init</strong>&quot; es como la iniciamos, y ahí es donde pasamos los valores de los atributos que tendrá ese objeto &quot;Book&quot; que crearemos.</p>
+<pre class="hljs"><code><div>    class Book:
+
+        def __init__(self, book_name, **kwargs):
+            self.book_name = book_name
+            book_attr = dict(kwargs.items())
+            self.book_description = {
+                &quot;book_name&quot; : book_name,
+                &quot;book_attr&quot; : book_attr
+                                }
+</div></code></pre>
+<p>Los parámetros que pasamos a &quot;<strong>init</strong>&quot;, son los siguientes:</p>
+<ul>
+<li>
+<p>Toda función dentro de una clase debera llamar a esa palabra <strong>&quot;self&quot;</strong> por necesidad, ya que ese &quot;self&quot; representa a cada <strong>instancia</strong> que llama a esa clase. Ahora veremos que es exactamente una instancia.</p>
+</li>
+<li>
+<p>Como segundo parámetro pasamos <strong>&quot;book_name&quot;</strong>, como un parámetro individual que recoge un solo valor, en este caso el nombre del libro.</p>
+</li>
+<li>
+<p>Finalmente pasamos <strong>&quot;**kwarg&quot;</strong> que responde a una seríe de argumentos que contienen una clave y un valor, es decir, los argumentos que corresponderían a un diccionario de Python.</p>
+</li>
+</ul>
+<p>En definitiva, <strong><strong>init</strong></strong> es el que método se ejecuta automáticamente cuando se crea una instancia de una clase.</p>
+<p>Con estos parámetros vamos a ver que sucede si declaramos la clase con estos valores:</p>
+<pre class="hljs"><code><div>    first_book = Book(book_name = 'Fiesta',
+                    book_author = 'Ernest Hemingway',
+                    book_pages = &quot;150&quot;,
+                    book_publisher = &quot;Pan Books&quot;
+                    )
+
+    print(first_book.book_description)
+
+</div></code></pre>
+<p>Esto que acabamos de hacer, es <strong>instanciar</strong> una clase, es decir, hemos introducido unos parámetros y hemos creado un objeto llamado &quot;first_book&quot; con esa clase.</p>
+<p>Si declaramos un segundo libro, &quot;second_book&quot; e introducimos otros parámetros, podemos ver como las descripciones que nos devuelve son las propias de cada libro.</p>
+<pre class="hljs"><code><div>    second_book = Book(book_name = 'Romeo and Juliet',
+                    book_author = 'Shakespeare',
+                    book_pages = &quot;156&quot;,
+                    book_publisher = &quot;Letra Minúscula&quot;
+                    )
+
+    print(second_book.book_description)
+</div></code></pre>
+<span style="color:blue">
+<p>El primero nos devolverá:
+{'book_name': 'Fiesta', 'book_attr': {'book_author': 'Ernest Hemingway', 'book_pages': '150', 'book_publisher': 'Pan Books'}}</p>
+<p>Y el segundo nos devolverá:
+{'book_name': 'Romeo and Juliet', 'book_attr': {'book_author': 'Shakespeare', 'book_pages': '156', 'book_publisher': 'Letra Minúscula'}}</p>
+</span>
+<p>!!! -- En defintiva, Debido a esta capacidad de crear instancias, podemos crear varios objetos simplemente instanciando una clase.</p>
+<h5 id="ejercicio">EJERCICIO</h5>
+<p>Haciendo uso de las clases, genera una clase biblioteca donde puedas ir almacenando esos libros.</p>
+<ul>
+<li>Ahora que ya tienes creados dos libros &quot;first_book&quot; y &quot;second_book&quot; puedes &quot;abrir&quot; una biblioteca e introducir esos libros.</li>
+<li>Recuerda que lo que devuelve cada clase &quot;Book&quot; es un diccionario anidado.</li>
+<li>Como pista decirte que es lo que hace la clase &quot;Book&quot;, coger los atributos y almacenarlos.</li>
+</ul>
+<h5 id="ejercicio-resuelto">EJERCICIO RESUELTO:</h5>
+<pre class="hljs"><code><div>    class Library:
+
+        def __init__(self):
+            self.books_store = {}   
+            
+
+        def add_book(self, books_store_new):
+
+            self.books_store[books_store_new['book_name']] = books_store_new
+            # return self.books_store
+
+
+    libreria = Library()
+    libreria.add_book(first_book.book_description)
+    libreria.add_book(second_book.book_description)
+    print('Contenido de libreria')
+    print(libreria.books_store)
+
+</div></code></pre>
+<h5 id="extra">Extra:</h5>
+<p>Observaremos que con esta solución logramos almacenar en una variable de la clase el contenido que queremos, no devolvemos nada, de ahí que aparezca con &quot;#&quot; delante, para que observeís la diferencia respecto a esta otra función de está clase, que sería esta:</p>
+<pre class="hljs"><code><div>    class Library:
+
+        def __init__(self):
+            self.books_store = {}
+            
+
+        def add_book(self, books_store_new):
+
+            self.books_store[books_store_new['book_name']] = books_store_new['book_attr']
+            # return self.books_store
+
+        def list_of_books(self):
+            lista = []
+            print(self.books_store.values())
+            for value in self.books_store.values():
+                lista.append([value])
+            return lista
+
+    stock_libreria = libreria.list_of_books()
+
+</div></code></pre>
+<p>Veremos que mientras que llamamos a una variable interna de la instancia, creamos una variable nosotros que ya no pertenece a esa clase (evidentemente el método que genera la variable, sí pertenece a la clase).</p>
+<h3 id="13-palabras-reservadas-doble-undersecored-methods-o-dunder-methods">1.3. Palabras reservadas: Doble undersecored Methods o Dunder Methods</h3>
+<p>&quot;The dobles underscored Methods&quot; o tambien llamados &quot;Dunder methods&quot;    , son los siguientes:</p>
+<ul>
+<li>
+<p><strong><strong>init</strong></strong>, que tal y como hemos dicho es la forma de iniciar una clase.</p>
+</li>
+<li>
+<p><strong><strong>str</strong></strong> y <strong><strong>repr</strong></strong> , suelen ser instrucciones que utilizamos sobre todo para obtener una idea rápida de la clase.</p>
+</li>
+</ul>
+<p>Por ejemplo para la clase Book declarada podríamos poner.</p>
+<pre class="hljs"><code><div>    def __str__(self):
+        return f'A nested dictionary with {self.book_name}'
+    
+    def __repr__(self):
+        return f'A nested dictionary with {self.book_name} and the description and {self.book_description}'
+
+</div></code></pre>
+<p>Al llamar a <strong>str</strong>, que lo haríamos de la siguiente manera:</p>
+<pre class="hljs"><code><div>    print(str(first_book))
+
+</div></code></pre>
+<p>Nos devolvería: &quot;A nested dictionary with Fiesta&quot;.</p>
+<p>Al llamar a <strong>repr</strong></p>
+<pre class="hljs"><code><div>    print(repr(first_book))
+
+</div></code></pre>
+<span style="color:blue">
+<p>Nos devolvería: &quot;A nested dictionary with Fiesta and the description and {'book_name': 'Fiesta', 'book_attr': {'book_author': 'Ernest Hemingway', 'book_pages': '150', 'book_publisher': 'Pan Books'}}&quot;</p>
+</span>
+<ul>
+<li>
+<p><strong>&quot;<strong>iter</strong>&quot;</strong> : Representa la expresión que da a entender que debemos iterar entre los elementos, lo cual significa que los recorremos.</p>
+</li>
+<li>
+<p><strong>&quot;<strong>next</strong>&quot;</strong>: Indica que hay que pasar al siguiente elemento.</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>   class Iterator:
+
+    def __init__(self, objects_to_iteract):
+        self.object_to_iteract = objects_to_iteract
+        self.last_object = (len(self.object_to_iteract) - 1)
+
+    def __iter__(self):
+        self.n = 0
+        return self
+
+    def get_object_num(self, n):
+        return self.object_to_iteract[n]
+    
+    def __next__(self):
+        if self.n &lt; self.last_object:
+            output = self.get_object_num(self.n)
+            self.n += 1
+            return output
+        elif self.n == self.last_object:
+            output = self.get_object_num(self.n)
+            self.n = 0
+            return output
+        
+</div></code></pre>
+<p>Para entender este código, vamos a añadir 2 libros más con nuestra clase &quot;Book&quot; .</p>
+<pre class="hljs"><code><div>
+    third_book = Book(book_name = 'Damian',
+                    book_author = 'Herman Hess',
+                    book_pages = &quot;136&quot;,
+                    book_publisher = &quot;Pan Books&quot;
+                    )
+
+    fourth_book = Book(book_name = 'The Hobbit',
+                    book_author = 'J.R.R. Tolkien',
+                    book_pages = &quot;269&quot;,
+                    book_publisher = &quot;Letra Minúscula&quot;
+                    )
+                    
+    libreria.add_book(third_book.book_description)
+    libreria.add_book(fourth_book.book_description)
+</div></code></pre>
+<p>y ahora que tenemos 4 libros vamos a poder ver como funcionan los dunder methods &quot;<strong>iter</strong>&quot; y &quot;<strong>next</strong>&quot;</p>
+<pre class="hljs"><code><div>    it = Iterator(stock_libreria)
+    process = iter(it)
+
+    print(next(process))
+    print(next(process))
+</div></code></pre>
+<p>Lo que obentenemos es lo siguiente:</p>
+<span style="color:blue">
+<p>[{'book_name': 'Fiesta', 'book_attr': {'book_author': 'Ernest Hemingway', 'book_pages': '150', 'book_publisher': 'Pan Books'}}]</p>
+<p>[{'book_name': 'Romeo and Juliet', 'book_attr': {'book_author': 'William Shakespeare', 'book_pages': '156', 'book_publisher': 'Letra Minúscula'}}]</p>
+</span>
+<p>Ya que hemos llamado dos veces al &quot;next(process), siendo process la variable que ejecuta la instrucción &quot;iter&quot; sobre la lista stock_libreria, que también hemos creado al resolver el ejercicio del tema anterior.</p>
+<h4 id="code">CODE</h4>
+<p>En la carpeta &quot;CH06_01_classes&quot; encontraréis el fichero &quot;datawarehouse_v01.py&quot;.</p>
+<p><a href="https://github.com/Goa-Zen/FS_Checkpoints/tree/main/MyTutorials/CH06_01_classes/datawarehouse_v01.py">Code</a></p>
+<h3 id="14-herencia">1.4. Herencia</h3>
+<p>Si lo pensamos detenidamente, un libro es un artículo o un producto. Es un artículo o un producto, como unos guantes, un ordenador o un coche, pero sin embargo, tiene unas características diferentes, como las citadas, autor, número de hojas y editorial.</p>
+<p>Vamos a crear por tanto una clase &quot;Article&quot; y vamos a modificar nuestra clase &quot;Book&quot; de forma que herede los atributos de esta.</p>
+<pre class="hljs"><code><div>    class Article:
+
+        def __init__(self, item_reference, item_name, item_pvp, item_description):
+            self.item_reference = item_reference
+            self.item_name = item_name
+            self.item_pvp = item_pvp
+            self.item_description = item_description
+
+            self.item_main = {
+                &quot;item_reference&quot; : item_reference,
+                &quot;item_name&quot; : item_name,
+                &quot;item_pvp&quot; : item_pvp,
+                &quot;item_description&quot; : item_description
+            }
+
+        def __str__(self):
+            return f&quot;REFERENCIA\t {self.item_reference}\n&quot; \
+                f&quot;NOMBRE\t\t {self.item_name}\n&quot; \
+                f&quot;PVP\t\t {self.item_pvp}\n&quot; \
+                f&quot;DESCRIPCIÓN\t {self.item_description}\n&quot;
+
+</div></code></pre>
+<p>Esta vez he hecho un poco diferente esta clase,  lo que antes pasábamos como **Kwargs, es decir como una serie de argumentos con clave, ahora solicitamos directamente las 4 variables.</p>
+<p>Todo artículo tiene una referencia en un inventario, un nombre, un precio y una descripción.</p>
+<p>Y los libros, además de estas características puede tener las que ya hemos citado al inicio, el autor, el número de páginas y  la editorial.</p>
+<p>Por lo tanto, lo que vamos a hacer es lo siguiente, declarar la clase &quot;Book&quot; pero ahora le pasaremos el parámetro &quot;Article&quot; para que Book adquiera todas las características de Article y además, veremos, le sumaremos alguna más.</p>
+<pre class="hljs"><code><div>    class Book(Article):
+
+        def insert_book_details(self, **kwargs):
+            book_attr = dict(kwargs.items())
+            self.book_attr = book_attr
+            self.item_main['item_atributtes'] = self.book_attr
+</div></code></pre>
+<p>Y en en el diccionario que ya habíamos creado con &quot;Article&quot; añadimos un nuevo elemento denominado &quot;item_attributtes&quot;, que será como cualquier item del diccionario y podremos acceder a sus elementos, que declaramos como un diccionario.</p>
+<p>A la hora de ejecutar el código, cambian cosas, ya que primero introducimos los parámetros de la clase padre, &quot;Article&quot; ya que la clase &quot;Book&quot; es heredera y luego, ya que se trata de un libro y tiene otras propiedades además de la de cualquier artículo, esta clase &quot;Book&quot; ejecuta una función propia y actualiza ese primer diccionario que obtenemos en la declaraciónd e clase &quot;self.item_main&quot;.</p>
+<pre class="hljs"><code><div>    first_book = Book(item_reference = 'A/B/2024-2000',
+                     item_name = 'Fiesta',
+                     item_pvp = 17.5,
+                     item_description = &quot;Libro de Ernest Hemingway&quot;
+                     )
+    print(first_book.item_main)
+    first_book.insert_book_details(book_name = 'Fiesta',
+                                   book_author = 'Ernest Hemingway',
+                                   book_pages = &quot;150&quot;,
+                                   book_publisher = &quot;Pan Books&quot;
+                                  )
+
+
+    second_book = Book(item_reference = 'A/B/2024-2001',
+                       item_name = 'Romeo and Juliet',
+                       item_pvp = 27.5,
+                       item_description = &quot;Libro de W. Shakespeare&quot;
+                      )
+    print(second_book.item_main)
+    second_book.insert_book_details(book_name = 'Romeo and Juliet',
+                                    book_author = 'William Shakespeare',
+                                    book_pages = &quot;156&quot;,
+                                    book_publisher = &quot;Letra Minúscula&quot;
+                                   )
+
+    print(first_book.item_main)
+    print(second_book.item_main)
+
+</div></code></pre>
+<p>Cuando imprimimos &quot;first_book.item_main&quot; antes de aplicarle la función &quot;insert_book_details&quot;, obtenemos:</p>
+<span style="color:blue">
+<p>{'item_reference': 'A/B/2024-2000', 'item_name': 'Fiesta', 'item_pvp': 17.5, 'item_description': 'Libro de Ernest Hemingway'}</p>
+<p>Cuando imprimimos &quot;second_book.item_main&quot; antes de aplicarle la función &quot;insert_book_details&quot;, obtenemos:</p>
+<p>{'item_reference': 'A/B/2024-2001', 'item_name': 'Romeo and Juliet', 'item_pvp': 27.5, 'item_description': 'Libro de W. Shakespeare'}</p>
+<p>Cuando en ambos libros aplicamos la función &quot;insert_book_details&quot;, podemos ver que lo que hace es incluir esos argumentos en un nuevo elemento del diccionario inicial, &quot;item_attributes&quot;:</p>
+<p>{'item_reference': 'A/B/2024-2000', 'item_name': 'Fiesta', 'item_pvp': 17.5, 'item_description': 'Libro de Ernest Hemingway', 'item_atributtes': {'book_name': 'Fiesta', 'book_author': 'Ernest Hemingway', 'book_pages': '150', 'book_publisher': 'Pan Books'}}</p>
+<p>{'item_reference': 'A/B/2024-2001', 'item_name': 'Romeo and Juliet', 'item_pvp': 27.5, 'item_description': 'Libro de W. Shakespeare', 'item_atributtes': {'book_name': 'Romeo and Juliet', 'book_author': 'William Shakespeare', 'book_pages': '156', 'book_publisher': 'Letra Minúscula'}}</p>
+</span> 
+<p>Cuando declaramos la variable &quot;libreria&quot; e instanciamos la clase Library, entonces, hacemos la misma operación que hacíamos antes, que es ir añadiendo los elementos, en este caso libros a la libreria. La clase &quot;Library&quot; no cambia, pero sien embargo el nombre de la propiedad de las instancias de &quot;Book&quot;, ahora se llaman &quot;item_main&quot; (antes era &quot;book_description&quot;)</p>
+<pre class="hljs"><code><div>    libreria = Library()
+    libreria.add_book(first_book.item_main)
+    libreria.add_book(second_book.item_main)
+</div></code></pre>
+<p>La clase &quot;Iterator&quot; que habíamos generado tampoco cambia en nada.</p>
+<h5 id="ejercicio">EJERCICIO</h5>
+<p>Parecería que el elemento del cual crear una clase universal para luego generar herederos, serían los &quot;usuarios&quot; y mas en concreto, los <strong>tipos de usuarios</strong> de una librería por ejemplo, donde existen tres tipos de usuarios:</p>
+<ul>
+<li>
+<p>El propietario: Sería el administrador y tendría permiso completo sobre todas las acciones posibles. Este se llamará &quot;UserAdmin&quot;.</p>
+</li>
+<li>
+<p>Imaginemos que solo el propietario y un empleado de confianza son los autorizados a introducir el stock recibido en el sistema que tienen diseñado para ello. Vamos a llamarle a este empleado el &quot;UserUpdaters&quot;.</p>
+</li>
+<li>
+<p>Finalmente, están el resto de empleados, que pueden facturar a cualquier cliente externo, pero solo pueden hacer eso y consultar el stock disponible. A este le llamaremos &quot;UserInvoicers&quot;.</p>
+</li>
+<li>
+<p>La clase universal de la que heredarían &quot;Users&quot;.</p>
+</li>
+</ul>
+<p>Objetivo: Construir 4 clases que sirvan para hacer un registro de usuarios. Dar de alta los usuarios de la libreria con sus correspondientes permisos asociados al tipo de uso que hace del sistema informático de la librería.</p>
+<h5 id="ejercicio-resuelto">EJERCICIO RESUELTO</h5>
+<pre class="hljs"><code><div>    class Users:
+
+        def __init__(self, user_name, user_login):
+            self.user_name = user_name
+            self.user_login = user_login
+
+
+        def register(self):
+            if self.user_name != '' and self.user_login != '':
+                return True
+            else:
+                return False
+
+    class UserAdmin(Users):
+
+        def register(self):
+            self.user_data = {
+                            &quot;user_name&quot; : self.user_name,
+                            &quot;user_login&quot;: self.user_login,
+                            &quot;user_id_type&quot;: &quot;1&quot; ,
+                            &quot;user_type&quot;: &quot;Administrator&quot;,
+                            &quot;user_permissions&quot;: ['Management', &quot;Updater&quot;, &quot;Seller&quot;],
+                            &quot;user_secure_word&quot;: &quot;help --admin&quot; 
+                            }
+
+    class UserUpdaters(Users):
+
+        def register(self):
+            self.user_data = {
+                            &quot;user_name&quot; : self.user_name,
+                            &quot;user_login&quot;: self.user_login,
+                            &quot;user_id_type&quot;: &quot;2&quot; ,
+                            &quot;user_type&quot;: &quot;Updater&quot;,
+                            &quot;user_permissions&quot;: [ &quot;Updater&quot;, &quot;Seller&quot;]
+                            }    
+
+    class UserInvoicers(Users):
+
+        def register(self):
+            self.user_data = {
+                            &quot;user_name&quot; : self.user_name,
+                            &quot;user_login&quot;: self.user_login,
+                            &quot;user_id_type&quot;: &quot;3&quot; ,
+                            &quot;user_type&quot;: &quot;Invoicer&quot;,
+                            &quot;user_permissions&quot;: [&quot;Seller&quot;]
+                            }    
+
+</div></code></pre>
+<p>Si ejecutamos este código y decimos:</p>
+<pre class="hljs"><code><div>    usuario_1 = UserAdmin(user_name= 'Alba',user_login= 'Gxwmm55')   
+    usuario_1.register()
+    print(usuario_1.user_data)
+
+    usuario_2 = UserUpdaters(user_name= 'Rocio',user_login= 'Sllxxxbb5')   
+    usuario_2.register()
+    print(usuario_2.user_data)
+
+    usuario_3 = UserInvoicers(user_name= 'Estibaliz',user_login= 'Ysfma77dk')   
+    usuario_3.register()
+    print(usuario_3.user_data)
+
+</div></code></pre>
+<p>Nos va a devolver un diccionario por cada usuario, que es lo que hemos almacenado en la propiedad de clase instanciada &quot;user_data&quot;.</p>
+<span style="color:blue">
+<p>{'user_name': 'Alba', 'user_login': 'Gxwmm55', 'user_id_type': '1', 'user_type': 'Administrator', 'user_permissions': ['Management', 'Updater', 'Seller'], 'user_secure_word': 'help --admin'}</p>
+<p>{'user_name': 'Rocio', 'user_login': 'Sllxxxbb5', 'user_id_type': '1', 'user_type': 'Administrator', 'user_permissions': ['Management', 'Updater', 'Seller'], 'user_secure_word': 'help --admin'}</p>
+<p>{'user_name': 'Estibaliz', 'user_login': 'Ysfma77dk', 'user_id_type': '1', 'user_type': 'Administrator', 'user_permissions': ['Management', 'Updater', 'Seller'], 'user_secure_word': 'help --admin'}</p>
+</span>
+<h5 id="extra">Extra</h5>
+<p>Vamos a crear una clase qeu dormatee diccionarios y vamos a ver de que forma vemos ahora los datos de los usuarios:</p>
+<pre class="hljs"><code><div>    class DictionaryFormatter:
+
+        def __init__(self, dictionary):
+            lista =[]
+            for key, value in dictionary.items():
+                lista.append(f'{key.upper()}\t {value}\n ')
+                print(f'{key.upper()}\t {value}\n ')
+
+
+            self.str_dictionary = &quot;  &quot;.join(lista)
+</div></code></pre>
+<p>como vemos, pasamos un diccionario y obtenemos todo el diccionario mostrando cada elemento del diccionario principal - podría haber diccionarios o listas anidadas-, y su contenido, cada uno en una línea.</p>
+<pre class="hljs"><code><div>    class DictionaryFormatter:
+
+        def __init__(self, dictionary):
+            lista =[]
+            for key, value in dictionary.items():
+                lista.append(f'{key.upper()}\t {value}\n ')
+                print(f'{key.upper()}\t {value}\n ')
+
+
+            self.str_dictionary = &quot;  &quot;.join(lista)
+</div></code></pre>
+<p>Vamos a ver que pasa si introducimos el diccionario que hemos obtenido con el primer usuario</p>
+<pre class="hljs"><code><div>    texto = DictionaryFormatter(usuario_1.user_data)
+    print(texto.str_dictionary)
+</div></code></pre>
+<p>Obtenemos:</p>
+<span style="color:blue">
+<p>USER_NAME        Alba
+USER_LOGIN    Gxwmm55
+USER_ID_TYPE  1
+USER_TYPE     Administrator
+USER_PERMISSIONS      ['Management', 'Updater', 'Seller']
+USER_SECURE_WORD      help --admin</p>
+</span>
+<h4 id="code-without-formater-do-it-yourself">CODE WITHOUT FORMATER: DO IT YOURSELF</h4>
+<p>En la carpeta &quot;CH06_01_classes&quot; el fichero &quot;ch06_exercise_class_user_01.py&quot;.</p>
+<p><a href="https://github.com/Goa-Zen/FS_Checkpoints/tree/main/MyTutorials/CH06_01_classes/ch06_exercise_class_user_01.py">Code</a></p>
+<h3 id="15-polimorfismo">1.5. Polimorfismo</h3>
+<p>Si observáis el código del ejercicio anterior resuelto, descubriréis que todos ejecutan la misma función que tienen todas las clases, tanto la padre como las hijas <strong>&quot;register&quot;</strong>, crear un diccionario con la información que tienen los atributos propios de cada usuario -que no son exactamente los mismos, tal y como hemos visto-.</p>
+<p>En este caso la única variable que es difernete es la &quot;user_secure_word&quot;, pero el resto es exactamente igual (respecto a lo que representan, no a lo que contienen)</p>
+<p>Esto es lo que responde a que es el Polimorfismo en las clases de Python, y representa la capacidad de ejecutar las mismas funciones dentro de las clases childs sin que necesariamente tengan que ejecutar la misma funcionalidad que la clase padre o que las clases hermanas.</p>
+<p>!!! -- En defintiva, existen muchas formas de implementar las clases, entre otras la ya vista donde además de heredar los atributos de la clase padre, puede ejecutar una función ya definida en la clase padre con diferente funcionalidad en las clases hijas, pese a adoptar en estas el mismo nombre la función</p>
+<h5 id="ejercicio">EJERCICIO.</h5>
+<p>Convierte clase User y las subclases y realiza en 3 clases independientes que no sean hijas de ninguna clase, la funcionalidad programada en el ejercicio anterior con los usuarios.</p>
+<h5 id="ejercicio-soluci%C3%B3n">EJERCICIO SOLUCIÓN.</h5>
+<pre class="hljs"><code><div>
+    class UserAdmin():
+
+        def __init__(self, user_name, user_login):
+            self.user_name = user_name
+            self.user_login = user_login
+
+            self.user_data = {
+                            &quot;user_name&quot; : self.user_name,
+                            &quot;user_login&quot;: self.user_login,
+                            &quot;user_id_type&quot;: &quot;1&quot; ,
+                            &quot;user_type&quot;: &quot;Administrator&quot;,
+                            &quot;user_permissions&quot;: ['Management', &quot;Updater&quot;, &quot;Seller&quot;],
+                            &quot;user_secure_word&quot;: &quot;help --admin&quot; 
+                            }
+            
+    class UserUpdaters():
+
+        def __init__(self, user_name, user_login):
+            self.user_name = user_name
+            self.user_login = user_login
+
+            self.user_data = {
+                            &quot;user_name&quot; : self.user_name,
+                            &quot;user_login&quot;: self.user_login,
+                            &quot;user_id_type&quot;: &quot;2&quot; ,
+                            &quot;user_type&quot;: &quot;Updater&quot;,
+                            &quot;user_permissions&quot;: [ &quot;Updater&quot;, &quot;Seller&quot;]
+                            }    
+
+    class UserInvoicers():
+
+        def __init__(self, user_name, user_login):
+            self.user_name = user_name
+            self.user_login = user_login
+
+            self.user_data = {
+                            &quot;user_name&quot; : self.user_name,
+                            &quot;user_login&quot;: self.user_login,
+                            &quot;user_id_type&quot;: &quot;3&quot; ,
+                            &quot;user_type&quot;: &quot;Invoicer&quot;,
+                            &quot;user_permissions&quot;: [&quot;Seller&quot;]
+                            }    
+                            
+</div></code></pre>
+<p>y para su ejecución:</p>
+<pre class="hljs"><code><div>    usuario_1 = UserAdmin(user_name= 'Alba',user_login= 'Gxwmm55')   
+    print(usuario_1.user_data)
+
+    usuario_2 = UserUpdaters(user_name= 'Rocio',user_login= 'Sllxxxbb5')   
+    print(usuario_2.user_data)
+
+    usuario_3 = UserInvoicers(user_name= 'Estibaliz',user_login= 'Ysfma77dk')   
+    print(usuario_3.user_data)
+
+</div></code></pre>
+<h4 id="code">CODE</h4>
+<p>En la carpeta &quot;CH06_01_classes&quot; encontraréis el fichero &quot;ch06_exercise_class_user_02.py&quot;.</p>
+<p><a href="https://github.com/Goa-Zen/FS_Checkpoints/tree/main/MyTutorials/CH06_01_classes/ch06_exercise_class_user_02.py">Code</a></p>
+<h3 id="16-get-y-set-en-python">1.6. GET y SET en Python</h3>
+<p>Hasta ahora hemos estado añadiendo atributos y funciones a las clases, como diríamos, &quot;a la rica ciruela&quot;, es decir, alegremente.</p>
+<p>¿Por qué digo esto?</p>
+<p>En Python, dada la gran flexibilida de programación, sucede algo que no sucede en todos los lenguajes, y es que en principio todos los atributos, objetos, métodos son accesibles, y con eso quiero decir que puede ver el valor - GET- y <strong>PUEDES CAMBIARLO</strong> -SET-, lo cual podría tener mucha lógica pero no tiene ninguna ya que cualquier usuario podría acceder a una variable que has creado en la clase fruto de un proceso, y ponerle otro valor.</p>
+<p>Si recordáis, cuando hemos definido la clase Library:</p>
+<pre class="hljs"><code><div>    class Library:
+
+        def __init__(self):
+            self.books_store = {}
+            
+
+        def add_book(self, books_store_new):
+
+            self.books_store[books_store_new['book_name']] = books_store_new['book_attr']
+            # return self.books_store
+
+        def list_of_books(self):
+            lista = []
+            print(self.books_store.values())
+            for value in self.books_store.values():
+                lista.append([value])
+            return lista
+
+    stock_libreria = libreria.list_of_books()
+
+</div></code></pre>
+<p>Veís que la variable &quot;books_store&quot; es una variable que es de la clase y sin embargo podemos sobre escribirla.</p>
+<pre class="hljs"><code><div>    libreria.books_store ={&quot;nothing&quot;: &quot;nothing to show&quot;}
+
+    stock_libreria = libreria.list_of_books()
+    print(stock_libreria)
+
+</div></code></pre>
+<p>Y entonces lo que obtenemos en &quot;stock_librería&quot; se basa en esa información y para &quot;librería&quot; todo está muy bien pero par nostros, no.</p>
+<p>Entonces, ¿Cómo hacemos para &quot;proteger&quot; estas variables?</p>
+<h3 id="17-decoradores-en-python">1.7. Decoradores en Python</h3>
+<p>Tendríamos dos formas de &quot;proteger&quot; o &quot;restringir&quot; el acceso a esas variables:</p>
+<ul>
+<li>
+<p>Podemos poner &quot;_&quot; previo a una variable y significaría que la estamos protegiendo &quot;protected&quot;.</p>
+</li>
+<li>
+<p>O bien poner &quot;__&quot; previo a una variable y significaría que la estamos declarando privada &quot;private&quot;.</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>    # Protected
+    class Library:
+
+        def __init__(self):
+            self._books_store = {}
+
+    # Private
+    class Library:
+
+        def __init__(self):
+            self.__books_store = {}
+</div></code></pre>
+<p>Vamos a aprovechar nuestras clases sin herencia ni poliformismo (1.5. Herencia: Ejercicio resuelto) para ver las diferencias entre las acciones que nos permitirían cada una de ellas.</p>
+<pre class="hljs"><code><div>
+    class UserAdmin():
+
+        def __init__(self, user_name, user_login):
+            self.user_name = user_name
+            self.user_login = user_login
+
+            self.__user_data = {
+                            &quot;user_name&quot; : self.user_name,
+                            &quot;user_login&quot;: self.user_login,
+                            &quot;user_id_type&quot;: &quot;1&quot; ,
+                            &quot;user_type&quot;: &quot;Administrator&quot;,
+                            &quot;user_permissions&quot;: ['Management', &quot;Updater&quot;, &quot;Seller&quot;],
+                            &quot;user_secure_word&quot;: &quot;help --admin&quot; 
+                            }
+            
+    class UserUpdaters():
+
+        def __init__(self, user_name, user_login):
+            self.user_name = user_name
+            self.user_login = user_login
+
+            self.user_data = {
+                            &quot;user_name&quot; : self.user_name,
+                            &quot;user_login&quot;: self.user_login,
+                            &quot;user_id_type&quot;: &quot;2&quot; ,
+                            &quot;user_type&quot;: &quot;Updater&quot;,
+                            &quot;user_permissions&quot;: [ &quot;Updater&quot;, &quot;Seller&quot;]
+                            }    
+
+    class UserInvoicers():
+
+        def __init__(self, user_name, user_login):
+            self.user_name = user_name
+            self.user_login = user_login
+
+            self._user_data = {
+                            &quot;user_name&quot; : self.user_name,
+                            &quot;user_login&quot;: self.user_login,
+                            &quot;user_id_type&quot;: &quot;3&quot; ,
+                            &quot;user_type&quot;: &quot;Invoicer&quot;,
+                            &quot;user_permissions&quot;: [&quot;Seller&quot;]
+                            }    
+
+
+    usuario_1 = UserAdmin(user_name= 'Alba',user_login= 'Gxwmm55')   
+    print(usuario_1.user_data)
+
+    usuario_2 = UserUpdaters(user_name= 'Rocio',user_login= 'Sllxxxbb5')   
+    print(usuario_2.user_data)
+
+    usuario_3 = UserInvoicers(user_name= 'Estibaliz',user_login= 'Ysfma77dk')   
+    print(usuario_3.user_data)
+
+</div></code></pre>
+<span style="color:blue">
+<p>Esto, nos va a devolver un error ya en el primer usuario &quot;UserAdmin&quot;:
+&quot;AttributeError: 'UserAdmin' object has no attribute 'user_data'. Did you mean: 'user_name'?&quot;</p>
+</span>
+<p>Sí observaís, los cambios los hemos realizado en la propiedad &quot;user_data&quot;, y en</p>
+<ul>
+<li>&quot;UserAdmin&quot;, ha pasado a ser privada &quot;private&quot;.</li>
+<li>&quot;UserInvoicers&quot;, ha pasado a ser protegida &quot;protected&quot;.</li>
+</ul>
+<h4 id="get">GET</h4>
+<p>Vamos a ver que hacemos en la clase <strong>&quot;UserAdmin&quot;</strong> porque lo cierto es que quisieramos poder ver que datos contiene su usuario, pero solo lo querría ver el Administrador, o bien para recordar por ejemplo la &quot;&quot;user_secure_word&quot;, o bien para cambiarlo o cambiar la contraseña,...</p>
+<p>Con lo que parecería que acceder a esa variable o atributo, debería estar permitido pero solo al administrador.</p>
+<p>Añadimos la función &quot;get_user_data&quot; con los parámetros &quot;user_name&quot; y &quot;user_login&quot;, como la misma clase a la que pertenece, para comprobar que la misma persona que solicita el acceso a la variable es el mismo administrador:</p>
+<pre class="hljs"><code><div>
+    class UserAdmin():
+
+        def __init__(self, user_name, user_login):
+            self.user_name = user_name
+            self.user_login = user_login
+
+            self.__user_data = {
+                            &quot;user_name&quot; : self.user_name,
+                            &quot;user_login&quot;: self.user_login,
+                            &quot;user_id_type&quot;: &quot;1&quot; ,
+                            &quot;user_type&quot;: &quot;Administrator&quot;,
+                            &quot;user_permissions&quot;: ['Management', &quot;Updater&quot;, &quot;Seller&quot;],
+                            &quot;user_secure_word&quot;: &quot;help --admin&quot; 
+                            }
+            
+        def get_user_data(self, user_name, user_login):
+            if user_name == self.user_name and user_login == self.user_login:
+                return self.__user_data
+            else:
+                return 'You are not allowed.'
+
+
+
+
+´´´
+
+y en lugar de llamar a:
+
+´´´
+    usuario_1 = UserAdmin(user_name= 'Alba',user_login= 'Gxwmm55')   
+    print(usuario_1.user_data)
+</div></code></pre>
+<p>llamaríamos a la función con los parámetros especifícados:</p>
+<pre class="hljs"><code><div>    usuario_1 = UserAdmin(user_name= 'Alba',user_login= 'Gxwmm55')   
+    print(usuario_1.get_user_data(user_name= 'Alba',user_login= 'Gxwmm55'))
+
+</div></code></pre>
+<p>Si por el contrario introducimos unos &quot;user_name&quot; o un &quot;user_login&quot; que no se corresponde con las propiedades de la instancia que lo llama, entonces, nos devolverá &quot;You are not allowed.&quot;.</p>
+<pre class="hljs"><code><div>
+    print(usuario_1.get_user_data(user_name= 'Rocio',user_login= 'Gxwmm55'))
+
+</div></code></pre>
+<p>Bien, nos olvidamos de este último código, lo eliminamos o lo comentamos y volvemos a ejecutar el código.</p>
+<p>Lo ejecutamos, y ahora el error no nos lo da en ese punto, nos lo da en &quot;UserUpdaters&quot;: <span style="color:blue">&quot;AttributeError: 'UserInvoicers' object has no attribute 'user_data'. Did you mean: '_user_data'?&quot;</span></p>
+<p>Es decir, ahora lo que tenemos es una variable o atributo protegido en la clase <strong>&quot;UserInvoicers&quot;</strong>, que si imaginemos puede acceder cualquiera a ver, el administrador, el updater y el propio invoicer.</p>
+<p>Entonces, tenemos que realizar otros cambios en esa clase para poder acceder a ella:</p>
+<pre class="hljs"><code><div>    class UserInvoicers():
+
+        def __init__(self, user_name, user_login):
+            self.user_name = user_name
+            self.user_login = user_login
+
+            self._user_data = {
+                            &quot;user_name&quot; : self.user_name,
+                            &quot;user_login&quot;: self.user_login,
+                            &quot;user_id_type&quot;: &quot;3&quot; ,
+                            &quot;user_type&quot;: &quot;Invoicer&quot;,
+                            &quot;user_permissions&quot;: [&quot;Seller&quot;]
+                            }    
+            
+        @property
+        def user_data(self):
+            return self._user_data
+
+</div></code></pre>
+<p>Introducimos &quot;@property&quot; y el resto de &quot;user_data&quot;. Es decir, mediante este <strong>&quot;property decorator&quot;</strong>, conseguimos que llamando a &quot;user_data&quot;, nos devuelva la protegida, &quot;_user_data&quot;.</p>
+<p>Y cambiamos el código para llamarla? `<strong>No, no es necesario</strong></p>
+<pre class="hljs"><code><div>    usuario_3 = UserInvoicers(user_name= 'Estibaliz',user_login= 'Ysfma77dk')   
+    print(usuario_3.user_data)
+
+</div></code></pre>
+<h4 id="set">SET</h4>
+<p>Vamos a ver que hacemos en la clase <strong>&quot;UserAdmin&quot;</strong> porque lo cierto es que quisieramos igual poder cambiar los datos contiene su usuario, cambiar, por ejemplo la &quot;&quot;user_secure_word&quot;, o bien la contraseña,... pero no exactamente toda el diccionario.</p>
+<p>Vamos por tanto a poner la variable o atributo &quot;user_login&quot; como private &quot;__&quot; previo a lo citado &quot;user_login&quot;.</p>
+<pre class="hljs"><code><div>
+    class UserAdmin():
+
+        def __init__(self, user_name, user_login):
+            self.user_name = user_name
+            self.__user_login = user_login
+
+            self.__user_data = {
+                            &quot;user_name&quot; : self.user_name,
+                            &quot;user_login&quot; : self.__user_login,
+                            &quot;user_id_type&quot;: &quot;1&quot; ,
+                            &quot;user_type&quot;: &quot;Administrator&quot;,
+                            &quot;user_permissions&quot;: ['Management', &quot;Updater&quot;, &quot;Seller&quot;],
+                            &quot;user_secure_word&quot;: &quot;help --admin&quot; 
+                            }
+            
+        def get_user_data(self, user_name, user_login):
+            if user_name == self.user_name and user_login == self.__user_login:
+                return self.__user_data
+            else:
+                return 'You are not allowed.'
+
+        def set_user_login(self, user_name, user_login):
+            if user_name == self.user_name and user_login == self.__user_login:
+                self.__user_login =input(&quot;What is your new password?&quot;)
+                self.__user_data['user_login']= self.__user_login
+                return f&quot;{self.user_name}: Tu contraseña ha sido cambiada por {self.__user_login}&quot;
+            else:
+                return 'You are not allowed.'
+
+</div></code></pre>
+<p>Si ahora al instanciar la clase llamamos a &quot;set_user_login&quot;;</p>
+<pre class="hljs"><code><div>    new_login = usuario_1.set_user_login(user_name= 'Alba',user_login= 'Gxwmm55')
+    print(new_login)
+    print(usuario_1.get_user_data(user_name= 'Alba',user_login= 'newpass'))
+
+</div></code></pre>
+<p>Veremos que todo funciona perfectamente.</p>
+<p>Y que pasa con la &quot;class UserInvoicer&quot;, que podemos hacer para teenre un &quot;SET&quot; y que nos lo permita la clase.</p>
+<p>Si ahora nos vamos a la clase <strong>&quot;UserInvoicers&quot;</strong> podemos hace lo mismo pero con los llamados **property decorators&quot;.</p>
+<pre class="hljs"><code><div>    class UserInvoicers():
+
+        def __init__(self, user_name, user_login):
+            self.user_name = user_name
+            self.user_login = user_login
+
+            self._user_data = {
+                            &quot;user_name&quot; : self.user_name,
+                            &quot;user_login&quot;: self.user_login,
+                            &quot;user_id_type&quot;: &quot;3&quot; ,
+                            &quot;user_type&quot;: &quot;Invoicer&quot;,
+                            &quot;user_permissions&quot;: [&quot;Seller&quot;]
+                            }    
+            
+        @property
+        def user_data(self):
+            return self._user_data
+
+        @user_data.setter
+        def user_data(self, value):
+            self._user_data = value
+
+
+</div></code></pre>
+<p>esta definición</p>
+<ul>
+<li>primero de la <strong>@property</strong></li>
+<li>luego del <strong>setter</strong></li>
+</ul>
+<p>Permite realizar todas estas acciones sobre la variable &quot;_user_data&quot;.</p>
+<pre class="hljs"><code><div>    usuario_3.user_data = 3
+    print(usuario_3.user_data)
+
+</div></code></pre>
+<p>Ahora nos permite editar el elemento y ponerle un nuevo valor.</p>
+<p>Y bueno, hasta ahora hemos tocado todas las clasessalvo la &quot;class UserUpdaters&quot; porque en teoría esto dependería de que el tipo de usuario no sea un &quot;UserInvoicer&quot; que tal y como lo estamos definiendo es el que menos funcionalidad tiene de todos los tipos de usuarios.</p>
+<p>Y podríamos hacerlo sin ningún problema, unicamente añadiendo el parámetro &quot;user_id_type&quot; a la property get y/o set, pero, yo veo como un poco aparatoso esto. ya que yo tenga ya algún regitro de usuarios una vez que los haya dado de alta.</p>
+<p>Normalmente este tipo de información se almacena en bases de datos, independientemente de si se tratan de bases de datos relacionales o no.</p>
+<p>Sin alcanzar a la dimensión de la base de datos, podemos trabajar con ficheros, que al fin y al cabo podríamos equiparar a tablas en un base de datos.</p>
+<h2 id="8-code-and-next-steps">8. Code and Next Steps</h2>
+<h4 id="code">CODE</h4>
+<p>El código utilizado hasta el momento se puede encontrar en la carpeta &quot;CH06_01_classes&quot; el fichero &quot;datawarehouse.py&quot;.</p>
+<p><a href="https://github.com/Goa-Zen/FS_Checkpoints/tree/main/MyTutorials/CH06_01_classes/datawarehouse.py">Code</a></p>
+<h4 id="next-steps">NEXT STEPS</h4>
+<p><a href="ch06_02_pip_apis.html">TUTORIAL - PYTHON, PIP PACKAGE Y APIs</a></p>
+
+</body>
+</html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ch06_02_pip_apis.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="tutorial---python-pip-package-y-apis">TUTORIAL - PYTHON, PIP PACKAGE Y APIs</h1>
+<ol>
+<li>
+<p>PIP PACKAGE</p>
+</li>
+<li>
+<p>APIs</p>
+</li>
+<li>
+<p>¿&quot;Quién&quot; es el &quot;Postman&quot;?</p>
+</li>
+<li>
+<p>Code and Next Steps</p>
+</li>
+</ol>
+<h2 id="1-pip-package">1. PIP PACKAGE</h2>
+<h3 id="11-%C2%BFqu%C3%A9-es-un-paquete-pip">1.1. ¿Qué es un paquete pip?</h3>
+<p>Pip es el acrónimo de &quot;PIP Installs Packages&quot;, que es una herramienta que permite instalar y desinstalar paquetes de Pyython. Además las posibles dependencias que estos paquetes tengan las resuelve automáticamente.</p>
+<p>Podemos decir que los paquetes de python, aunque no todos, residen en lo que también es llamado &quot;the cheese shop&quot; o &quot;Python Package Index&quot;. Por lo tanto, para ejecutarlos, es necesario llamarlos haciendo uso de Pip.</p>
+<h3 id="12-instalaci%C3%B3n-de-pip">1.2. Instalación de pip</h3>
+<p>Pip normalmente viene incluido en las últimas versiones de python. Para comprobar que lo tenemos en la terminal escribimos:</p>
+<p>´´´
+pip --version
+´´´
+y si nos devuelve la versión y el lugar de instalación es que estará instalado.</p>
+<p>En caso de no estar instalado, hay que seguir los siguientes pasos en windows:</p>
+<ol>
+<li>Descargar el scrip de instalación &quot;get-pip.py&quot;.</li>
+<li>Acceder por la terminal de ocmando hasta el directorio donde hemos guardado el fichero.</li>
+<li>Ejecutar el comando &quot;python get-pip.py&quot;.</li>
+</ol>
+<h3 id="13-instalaci%C3%B3n-de-paquetes-pip-que-no-tenemos">1.3. Instalación de paquetes pip que no tenemos</h3>
+<p>Accederíamos por la terminal de comandos y mediante la siguiente instrucción, instalaríamos, por ejemplo el paquete &quot;requests&quot;.</p>
+<blockquote>
+<p>pip install requests</p>
+</blockquote>
+<h3 id="14-importaci%C3%B3n-de-paquetes">1.4. Importación de paquetes</h3>
+<p>Podemos importarlos enteros o podemos importar las funciones que nos interesan de esos paquetes. Y ya en Python, mediante los siguientes comandos hacemos la importación de:</p>
+<h5 id="importar-el-paquete-externo-entero">Importar el paquete externo entero:</h5>
+<blockquote>
+<p>import requests</p>
+</blockquote>
+<h5 id="importar-el-paquete-externo-entero-poniendole-un-alias">Importar el paquete externo entero poniendole un alias:</h5>
+<blockquote>
+<p>import requests as rq</p>
+</blockquote>
+<h5 id="importar-una-funci%C3%B3n-del-paquete-externo">Importar una función del paquete externo:</h5>
+<blockquote>
+<p>from bs4 import BeautifulSoup</p>
+</blockquote>
+<h5 id="importar-una-funci%C3%B3n-de-un-paquete-interno">Importar una función de un paquete interno:</h5>
+<p>También podríamos llamar a un fichero python donde almacenamos variables en nuestro sistema. Imaginemos que tenemos un fichero llamado &quot;cooking_functions.py&quot; donde almacenamos una variable llamada &quot;boiling_point&quot;, que recoge el argumento de la comida que vayas a preparar.</p>
+<p>Para ello usaremos este código:</p>
+<blockquote>
+<p>from cooking_functions import boiling_point</p>
+</blockquote>
+<p>y una vez importado podremos llamarlo desde nuestro código.
+También podremos importar el paquete interno entero como haríamos con un externo.</p>
+<h3 id="15-trabajar-con-los-paquetes">1.5. Trabajar con los paquetes</h3>
+<p>Si queremos llamar a una función tras <strong>importar el paquete entero</strong>:</p>
+<blockquote>
+<p>paguete.funcion()</p>
+</blockquote>
+<p>Si queremos llamar a una función tras <strong>importar el paquete entero CON ALIAS</strong>:</p>
+<blockquote>
+<p>alias.funcion()</p>
+</blockquote>
+<p>Si queremos llamar a una función tras <strong>Importar una función del paquete</strong>:</p>
+<blockquote>
+<p>funcion()</p>
+</blockquote>
+<p>!!! -- En defintiva, pip nos permite acceder a funcionalidad que ya están programadas por otros y hacer más potentes nuestros programas sin necesidad de volverlo a reprogramar.</p>
+<h2 id="2-apis">2. APIs</h2>
+<h3 id="21-%C2%BFqu%C3%A9-es-una-api">2.1. ¿Qué es una API?</h3>
+<p>API es el acrónimo para &quot;Application Programming Interface&quot;. Las API son mecanismos que permiten a dos componentes de software comunicarse entre sí mediante un conjunto de definiciones y protocolos.</p>
+<p>Analicemos que significa cada palabra en el contexto de las APIs:</p>
+<ul>
+<li>
+<p>La palabra <strong>aplicación</strong> se refiere a cualquier software diseñado para satisfacer las necesidaes de los usuarios finales. Es decir, las aplicaciones son programas informáticos que permiten a los usuarios realizar tareas específicas, como procesamiento de texto, edición de imágenes, gestión de proyectos, navegación web, entre otros.</p>
+</li>
+<li>
+<p>La palabra <strong>programming</strong>, a pesar de poder ser confundidas con la aplicación, los programas pueden incluir aplicaciones y otros tipos de software, como sistemas operativos, controladores de dispositivos, utilidades y más.</p>
+</li>
+<li>
+<p>La palabra <strong>interfaz</strong> puede considerarse como un contrato de servicio entre dos aplicaciones. Este contrato define cómo se comunican entre sí mediante solicitudes y respuestas.</p>
+</li>
+</ul>
+<p>La documentación de las APIs suele contener información sobre cómo los desarrolladores deben estructurar esas solicitudes y respuestas.</p>
+<h3 id="22-%C2%BFc%C3%B3mo-funcionan-las-api">2.2. ¿Cómo funcionan las API?</h3>
+<p>La arquitectura de las API suele explicarse en términos de cliente y servidor.
+La aplicación que envía la solicitud se llama cliente, y la que envía la respuesta se llama servidor.</p>
+<p><img src="images/API-Rest.png" alt="Table output" title="Table otuput">
+https://www.seobility.net/es/wiki/API_REST</p>
+<h3 id="23-tipos-de-apis">2.3. Tipos de APIs</h3>
+<p>Las API pueden funcionar de cuatro maneras diferentes:</p>
+<ul>
+<li>
+<p>La <strong>API de SOAP</strong> (Simple Object Access Protocol) utilizan el protocolo simple de acceso a objetos. El cliente y el servidor intercambian mensajes mediante XML(Lenguaje de Marcado Extensible) para intercambiar información entre diferentes sistemas.</p>
+</li>
+<li>
+<p>Las <strong>API de RPC</strong> (Remote Procedure Call) permiten que una aplicación invoque una función o método en un sistema remoto a través de una red. El cliente completa una función (o procedimiento) en el servidor, y el servidor devuelve el resultado al cliente.</p>
+</li>
+<li>
+<p>La <strong>API de WebSocket</strong> es un protocolo de comunicación bidireccional que permite que los datos se intercambien entre una aplicación web y un servidor en tiempo real. Utiliza objetos JSON para transmitir datos</p>
+</li>
+<li>
+<p>La <strong>API de REST</strong> es una forma de permitir que diferentes aplicaciones se comuniquen entre sí a través de internet utilizando el protocolo HTTP. Estas son las API más populares y flexibles que se encuentran en la web actualmente.</p>
+</li>
+</ul>
+<h3 id="24-apis-y-sus-verbos">2.4. APIs y sus verbos</h3>
+<p><strong>Los verbos Http involucrados en un sistema REST son GET, POST, PUT y DELETE.</strong></p>
+<p>Método HTTP se refiere a la acción que se debe realizar en una solicitud HTTP, como obtener información, enviar información, actualizar información o eliminar información.</p>
+<p>Los métodos HTTP más comunes utilizados en las API son:</p>
+<h5 id="get">GET:</h5>
+<p>Para obtener información del servidor.
+Esta solicitud no cambia nada en el servidor ya que solo consulta los datos, no los altera en el servidor y por lo tanto se considera una operación &quot;segura&quot;.</p>
+<h5 id="post">POST:</h5>
+<p>Para Agregar información al servidor.
+Esta solicitud puede crear o modificar datos en el servidor y no es considerada una operación &quot;segura&quot;.</p>
+<h5 id="put">PUT:</h5>
+<p>Para reemplazar la información del servidor.
+Esta solicitud puede crear nuevos datos si no existen y también puede modificar datos existentes. Es considerada una operación &quot;no segura&quot;.</p>
+<h5 id="delete">DELETE:</h5>
+<p>Para borrar información del servidor.
+Esta solicitud es considerada una operación &quot;no segura&quot; ya que elimina información del servidor.</p>
+<p>Estos métodos no son los únicos pero sí los principales más utilizados, también hay otros métodos HTTP menos comunes como HEAD, OPTIONS, CONNECT, TRACE y PATCH que se utilizan en casos específicos.</p>
+<h3 id="25-ejemplo-de-c%C3%B3digo-haciendo-uso-de-los-paquetes-para-comunicarnos-con-las-apis-en-python">2.5. Ejemplo de código haciendo uso de los paquetes para comunicarnos con las APIs en Python</h3>
+<p>Vamos a recoger una tabla de una página web haciendo uso de la libreria &quot;pandas&quot;: Es cierto que &quot;pandas&quot; tiene otras dependencias que también tendremos que instalar como &quot;lxml&quot; y &quot;html5lib &quot;</p>
+<pre class="hljs"><code><div>	import pandas as pd
+	table_mn = pd.read_html('https://en.wikipedia.org/wiki/Minnesota')
+	print(f'Total tables: {len(table_mn)}')
+	if len(table_MN)&gt;2:
+		table_3 = table_mn[2]
+		print(table_3)
+</div></code></pre>
+<p>Y esto nos va a devolver el contenido de la tercera tabla de esa página web que es el siguiente:</p>
+<span style="color:blue">
+<p><img src="images/resultado_pandas.jpg" alt="Table output" title="Table otuput"></p>
+</span>
+<h3 id="exercise">EXERCISE</h3>
+<p>Pasos</p>
+<ol>
+<li>
+<p>Con el código generado en el tema anterior &quot;CH06_01_classes&quot;, en concreto vaos a coger el fichero &quot;datawarehouse.py&quot; y lo vamos a copiar en otra nueva carpeta que podéis llamar como queráis.</p>
+</li>
+<li>
+<p>Cuando tengáis ese fichero, lo que tenéis que hacer es copiarlo una vez y la copia llamarla <strong>&quot;datawarehouse_exe.py</strong>.</p>
+</li>
+<li>
+<p>Ahora tenemos dos ficheros:</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>Dejad todas las clases en el fichero <strong>&quot;datawarehouse.py&quot;</strong>.</p>
+</li>
+<li>
+<p>En <strong>&quot;datawarehouse_exe.py&quot;</strong> vamos a dejar el resto del código que no son clases. Y además, aquí vamos a añadir al principio del fichero la siguiente instrucción:</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>import datawarehouse as dw
+
+</div></code></pre>
+<p>y en el resto del fichero, todas las clases que aparecen nombras deberán ir ahora precedidas de <strong>&quot;dw.&quot;</strong> para que idenifique cada clase que pertenece a ese paquete que acabamos de importar.</p>
+<h4 id="code">CODE</h4>
+<p>Obtendremos los código de la carpeta &quot;CH06_02_pipapi&quot; en los dos ficheros contenidos en ella.</p>
+<p><a href="https://github.com/Goa-Zen/FS_Checkpoints/tree/main/MyTutorials/CH06_02_pipapi">Code</a></p>
+<h2 id="3-%C2%BF%22qui%C3%A9n%22-es-el-%22postman%22">3. ¿&quot;Quién&quot; es el &quot;Postman&quot;?</h2>
+<p>Mr. Postman es una aplicación que funciona indistintamente en Windows, Mac y Linux que básicamente nos permite realizar peticiones de una manera simple para testear APIs de tipo REST propias o de terceros.</p>
+<p>Postman sirve para múltiples tareas, entre otras:</p>
+<ul>
+<li>Testear colecciones o catálogos de APIs tanto para Frontend como para Backend.</li>
+<li>Organizar en carpetas, funcionalidades y módulos los servicios web.</li>
+<li>Permite gestionar el ciclo de vida (conceptualización y definición, desarrollo, monitoreo y mantenimiento) de nuestra API.</li>
+<li>Generar documentación de nuestras APIs.</li>
+<li>Trabajar con entornos (calidad, desarrollo, producción) y de este modo compartir a través de un entorno cloud la información con el resto del equipo involucrado en el desarrollo.</li>
+</ul>
+<h3 id="31-m%C3%A9todos-m%C3%A1s-utilizados">3.1. Métodos más utilizados</h3>
+<p>Postman cuenta con una serie de métodos que nos permiten tomar acción ante nuestras peticiones. Los más utilizados:</p>
+<ul>
+<li>GET: Obtener información</li>
+<li>POST: Agregar información</li>
+<li>PUT: Reemplazar la información</li>
+<li>PATCH: Actualizar alguna información</li>
+<li>DELETE: Borrar información</li>
+</ul>
+<p>Os recordarán a los verbos de las APIs, no? Al fin y al cabo es lo que utiliza Postman, los verbos de las APIs, es decir de de los métodos HTTP.</p>
+<h3 id="32-posible-errores">3.2. Posible errores</h3>
+<p>En cuanto a los posibles errores que podemos apreciar en la respuesta que nos ofrece la herramienta, lo resumiremos en que</p>
+<ul>
+<li>si la respuesta dada se encuentra en el rango de “200” quiere decir que toda la petición ha salido sin inconvenientes;</li>
+<li>mientras que el rango de los códigos de error “400” hacen referencia a errores con el cliente</li>
+<li>y aquellos errores en la línea de los “500” tienen que ver con fallos en el servidor.</li>
+</ul>
+<p>!!! -- En defintiva, &quot;Mr. Postan&quot; es mejor que un cartero, que un guarda de seguridad y que un secretario, ya que es todo eso a la vez, porque:
+!!! - Recoge nuestras peticiones y se asegura de que todo es seguro y las realiza.
+!!! - Se va has el servidor, ejecuta nuestra petición manteniendo la seguridad y el orden en todo momento.
+!!! - Y nos devuelve lo que ha obtenido.</p>
+<h2 id="4-code-and-next-steps">4. Code and Next Steps</h2>
+<h4 id="code">CODE</h4>
+<p>Obtendremos los código de la carpeta &quot;CH06_02_pipapi&quot; en los dos ficheros contenidos en ella.</p>
+<p><a href="https://github.com/Goa-Zen/FS_Checkpoints/tree/main/MyTutorials/CH06_02_pipapi">Code</a></p>
+<h4 id="next-steps">NEXT STEPS</h4>
+<p><a href="ch06_03_md_databases.html">TUTORIAL - DATABASES TUTORIAL</a></p>
+
+</body>
+</html>
