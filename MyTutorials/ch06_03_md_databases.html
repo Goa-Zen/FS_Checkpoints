@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ch06_03_md_databases.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="tutorial---databases-tutorial">TUTORIAL - DATABASES TUTORIAL</h1>
+<ol>
+<li>
+<p>Ficheros</p>
+</li>
+<li>
+<p>Bases de datos</p>
+</li>
+<li>
+<p>Code and Next Steps</p>
+</li>
+</ol>
+<h2 id="1-ficheros">1. Ficheros</h2>
+<p>Para comprender bien el concepto de ficheros, comenzaremos por ver como trabajar con un fichero &quot;.csv&quot; en python.</p>
+<p>Primero vamos a importar la librería &quot;pandas&quot;.</p>
+<pre class="hljs"><code><div>
+    import pandas as pd
+
+</div></code></pre>
+<p>Vamos a seguir con el ejemplo utilizado durante todo el curso anterior &quot;Classes in Python&quot;. No se si habréis observado que hemos elaborado una clase llamada &quot;User&quot; que a su vez tiene 3 subclases &quot;UserAdmin&quot;, &quot;UserUpdaters&quot; y &quot;UserInvoicers&quot;.</p>
+<p>Hasta ahora hemos cargado los usuarios y hemos consultado sobre ellos, pero lo cierto es que en la vida real, hacemos primero el registro en una aplicación y eso normalmente queda guardado en alguna parte, o en un <strong>fichero, o en una tabla de datos</strong>, que al final es lo que viene a ser un fichero.</p>
+<p>Bien, imaginemos que nosotros tenemos un fichero csv llamado &quot;users.csv&quot;, y que ahí guardaremos todos nuestros datos. Nuestro fichero tendrá los siguientes campos o variables (o columnas si estáis habituados a excel):</p>
+<p>&quot;user_id&quot;
+&quot;user_name&quot;
+&quot;user_login&quot;
+&quot;user_id_type&quot;
+&quot;user_type&quot;
+&quot;user_permissions&quot;
+&quot;user_secure_word&quot;</p>
+<p>Vamos a ver ahora como modificamos la función register en nuestras subclases de &quot;User&quot;:</p>
+<pre class="hljs"><code><div>
+    class UserAdmin(Users):
+
+        def register(self, current_user_type):
+            self.user_data = {
+                            &quot;user_name&quot; : self.user_name,
+                            &quot;user_login&quot;: self._user_login,
+                            &quot;user_id_type&quot;: &quot;1&quot; ,
+                            &quot;user_type&quot;: &quot;Administrator&quot;,
+                            &quot;user_permissions&quot;: ['Management', &quot;Updater&quot;, &quot;Seller&quot;],
+                            &quot;user_secure_word&quot;: &quot;help --admin&quot; 
+                            }
+
+            df_users = pd.read_csv(f'{path_root}/data/users.csv')
+            df_users.loc[len(df_users)] = [len(df_users),self.user_name, self._user_login, &quot;1&quot;,&quot;Administrator&quot;, ['Management', &quot;Updater&quot;, &quot;Seller&quot;], &quot;help --admin&quot; ]
+            df_users.to_csv(f'{path_root}/data/users.csv', header = True, index = False)
+
+
+        @property
+        def user_login(self):
+            return self._user_login
+
+        
+</div></code></pre>
+<p>Hemos abierto el fichero csv.
+Le hemos dicho que nos incluya en la primera línea vacia len(df_users) los valores correspondientes a este usuario. Lo cual siendo el administrador, tiene toda la lógica que pueda introducir todos los usuarios que quiera.</p>
+<p>!!! Habréis observado que podemos introducir las mismas 3 líneas en cada tipo de usuario restante con los parámetros indicados en cada caso y entonces,  podríamos añadir los registros que quisiéramos, ya que no establecemos ningún tipo de control para nada: podrían introducirse datos repetidos, podrían introducir los usuarios datos del administrador,.. y eso no nos interesa.</p>
+<h2 id="2-bases-de-datos">2. Bases de datos</h2>
+<h3 id="21-qu%C3%A9-es-una-base-de-datos">2.1. Qué es una Base de datos</h3>
+<p>Una base de datos es una recopilación organizada de información o datos estructurados, que normalmente se almacena en un sistema informático.</p>
+<p>Normalmente, una base de datos está controlada por un sistema de gestión de bases de datos (DBMS). En conjunto, los datos y el DBMS, junto con las aplicaciones asociadas a ellos, reciben el nombre de sistema de bases de datos, abreviado normalmente a simplemente base de datos.</p>
+<p>Los datos de los tipos más comunes de bases de datos en funcionamiento actualmente se suelen utilizar como estructuras de filas y columnas en una serie de tablas para aumentar la eficacia del procesamiento y la consulta de datos.</p>
+<h3 id="22-%C2%BFcu%C3%A1l-es-la-diferencia-entre-una-base-de-datos-y-un-fichero-excel-o-csv">2.2. ¿Cuál es la diferencia entre una base de datos y un fichero excel o csv?</h3>
+<p>Tanto las bases de datos como lso ficherosMicrosoft Excel) y como los ficheros csv son modos cómodos de almacenar información.</p>
+<p>Las principales diferencias entre los dos son:</p>
+<ul>
+<li>Cómo se almacenan y se manipulan los datos</li>
+<li>Quién puede acceder a los datos</li>
+<li>Cuántos datos pueden almacenarse</li>
+</ul>
+<p>Las hojas de cálculo se diseñaron originalmente para un usuario y sus características así lo reflejan. Son perfectas para un único usuario o para un pequeño número de usuarios que no necesiten hacer una gran manipulación de datos increíblemente complicada.</p>
+<p>Las bases de datos, por otro lado, están diseñadas para contener recopilaciones mucho más grandes de información organizada, a veces en cantidades masivas. Las bases de datos permiten que muchos usuarios accedan y consulten los datos de forma rápida y segura al mismo tiempo mediante una lógica y un lenguaje muy complejos.</p>
+<h3 id="23-evoluci%C3%B3n-de-la-base-de-datos">2.3. Evolución de la base de datos</h3>
+<p>Las bases de datos han evolucionado radicalemente desde su inicio en la década de 1960:</p>
+<ul>
+<li>
+<p>Las bases de datos de navegación, como la base de datos jerárquica (que se basaba en un modelo de árbol y permitía una relación de uno a muchos)</p>
+</li>
+<li>
+<p>La base de datos de red (un modelo más flexible que permitía relaciones múltiples), eran los sistemas originales que se utilizaban para almacenar y manipular datos.</p>
+</li>
+</ul>
+<p>Como ventaja sencillos, pero como inconvenite, estos primeros sistemas eran inflexibles.</p>
+<p>En la década de 1980, se hicieron populares <strong>las bases de datos relacionales</strong>, seguidas de las bases de datos orientadas a objetos en la década de 1990.</p>
+<p>Más recientemente, <strong>las bases de datos NoSQL</strong> surgieron como respuesta al crecimiento de Internet y la necesidad de acelerar la velocidad y el procesamiento de los datos no estructurados. Hoy en día, las bases de datos en la nube y las bases de datos de autogestión están abriendo nuevos horizontes en lo que respecta a la forma en la que se recopilan, se almacenan, se gestionan y se utilizan los datos.</p>
+<h3 id="24-tipos-de-bases-de-datos">2.4. Tipos de bases de datos</h3>
+<p>Existen muchos tipos diferentes de bases de datos. La mejor base de datos para una organización específica depende de cómo pretenda la organización utilizar los datos.</p>
+<p>Vamos a comentar tres de ellas.</p>
+<h4 id="bases-de-datos-relacionales">Bases de datos relacionales</h4>
+<p>Las bases de datos relacionales se hicieron predominantes en la década de 1980. Los elementos de una base de datos relacional se organizan como un conjunto de tablas con columnas y filas. La tecnología de bases de datos relacionales proporciona la forma más eficiente y flexible de acceder a información estructurada.</p>
+<span style="color:blue">
+<p><img src="images/bbbdd_relacionales_01.jpg" alt="Table output" title="Table otuput"></p>
+<p><img src="images/bbbdd_relacionales_02.jpg" alt="Table output" title="Table otuput"></p>
+<p><img src="images/bbbdd_relacionales_03.jpg" alt="Table output" title="Table otuput"></p>
+</span>
+<h4 id="almacenes-de-datos-o-datawarehouses">Almacenes de datos o Datawarehouses</h4>
+<p>Un repositorio central de datos, un data warehouse es un tipo de base de datos diseñado específicamente para consultas y análisis rápidos.</p>
+<p><img src="images/dw_01.jpg" alt="Table output" title="Table otuput"></p>
+<p><img src="images/dw_02.jpg" alt="Table output" title="Table otuput"></p>
+<p><img src="images/dw_03.jpg" alt="Table output" title="Table otuput"></p>
+<p><img src="images/dw_04.jpg" alt="Table output" title="Table otuput"></p>
+<h4 id="bases-de-datos-nosql">Bases de datos NoSQL</h4>
+<p>Una base de datos NoSQL, o base de datos no relacional, permite almacenar y manipular datos no estructurados y semiestructurados (a diferencia de una base de datos relacional, que define cómo se deben componer todos los datos insertados en la base de datos). Las bases de datos NoSQL se hicieron populares a medida que las aplicaciones web se volvían más comunes y complejas.</p>
+<p>Pero existen muchas otros tipos:</p>
+<ul>
+<li>Bases de datos orientadas a objetos</li>
+<li>Bases de datos distribuidas</li>
+<li>Bases de datos orientadas a grafos</li>
+<li>Bases de datos de código abierto</li>
+<li>Bases de datos en la nube</li>
+<li>Base de datos multimodelo</li>
+<li>Bases de datos de autogestión</li>
+</ul>
+<h6 id="mongodb">MongoDB</h6>
+<p>MongoDB  es un sistema de base de datos NoSQL orientado a documentos de código abierto , que en lugar de guardar los datos en tablas lo hace en estructuras de datos BSON (similar a JSON) con un esquema dinámico.</p>
+<p>MongoDB es una base de datos orientada a documentos. Esto quiere decir que en lugar de guardar los datos en registros, guarda los datos en documentos. Estos documentos son almacenados en BSON, que es una representación binaria de JSON.</p>
+<p>Esto representa una de las diferencias más importantes con respecto a las bases de datos relacionales. Y resulta que no es que no es necesario seguir un esquema. Los documentos de una misma colección - concepto similar a una tabla de una base de datos relacional -, pueden tener esquemas diferentes</p>
+<p>MongoDB describe su arquitectura como
+FUENTE:  https://www.mongodb.com/es/what-is-mongodb</p>
+<blockquote>
+<p>MongoDB almacena datos en documentos flexibles similares a JSON, por lo que los campos pueden variar entre documentos y la estructura de datos puede cambiarse con el tiempo</p>
+</blockquote>
+<blockquote>
+<p>El modelo de documento se asigna a los objetos en el código de su aplicación para facilitar el trabajo con los datos</p>
+</blockquote>
+<blockquote>
+<p>Las consultas ad hoc, la indexación y la agregación en tiempo real ofrecen maneras potentes de acceder a los datos y analizarlos</p>
+</blockquote>
+<blockquote>
+<p>MongoDB es una base de datos distribuida en su núcleo, por lo que la alta disponibilidad, la escalabilidad horizontal y la distribución geográfica están integradas y son fáciles de usar</p>
+</blockquote>
+<blockquote>
+<p>MongoDB es de uso gratuito. Las versiones lanzadas antes del 16 de octubre de 2018 se publican bajo licencia AGPL. Todas las versiones posteriores al 16 de octubre de 2018, incluidos los parches lanzados para versiones anteriores, se publican bajo&quot;.</p>
+</blockquote>
+<h2 id="3-code-and-next-steps">3. Code and Next Steps</h2>
+<h4 id="next-steps">NEXT STEPS</h4>
+<p>Vamos a desarrollar el proyeto datawarehouse, incluyendo:</p>
+<ul>
+<li>Una base de datos NoSQL en MongoDB.</li>
+<li>Un loguer en la aplicación.</li>
+<li>Edición de valores de usuario</li>
+</ul>
+
+</body>
+</html>

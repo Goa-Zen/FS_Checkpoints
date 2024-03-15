@@ -1,0 +1,2 @@
+user_id,user_name ,user_login,user_id_type,user_type,user_permissions,user_secure_word
+0,Alba,Gxwmm55,1,Administrator,"['Management', 'Updater', 'Seller']",help --admin
