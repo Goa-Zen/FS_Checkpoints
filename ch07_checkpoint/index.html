@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kufam&family=Merriweather:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0f3793b933.js" crossorigin="anonymous"></script>
+    
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
+    
+    <!-- <script src="script.js"></script> -->
+    <title>Interact</title>
+
+<script type="text/javascript">
+
+
+const removeFirstAndLast = arr => {
+    var element = document.getElementById('div_write_01');
+    if (arr.length >=3) {
+        element.innerHTML = arr.slice(1,-1);
+    } else {
+        throw "You need at least three elements in the array"
+    }
+}
+
+var mathCalculator = {
+  title: 'Resultado',
+  content: 'No right parameters ...',
+  allowed_numbers_operations : ['+', '*', '**', "/","-"],
+  allowed_strings_operations : ['concat', "endsWith","startsWith", "upper", "lower"],
+  allowed_lists_operations: ['concat', "endsWith","startsWith", "upper", "lower"],
+  isNumberFunction: function (inputValue) {
+    var typedata = typeof(inputValue);
+    switch (typedata) {
+        case "object":
+            const reducer = (accumulator, curr) => accumulator + curr;
+            var sum = (inputValue.reduce(reducer));
+            return typeof(sum)==="number" ? true : false;
+          
+        default:
+            return false;
+    }
+  },
+//   mySum: function (item, index) {
+//     text += index + ": " + item + "<br>";     
+//   },
+  renderContent: function(inputValue, operation) {
+    var element = document.getElementById('div_write_01');
+    locateZero = inputValue.indexOf(0);
+    // alert(locateZero);
+    
+
+    if (locateZero >=0) {
+        inputValue.splice(locateZero,1);
+    }
+
+    if (this.isNumberFunction(inputValue)) {   
+      // const reducer = (total, currentValue) => total + currentValue;
+      // const total = inputValue.reduce(reducer);
+      // var output = total / arr.length;
+      // element.innerHTML += this.title + ' Media ' + " --> " + output + '<br>'; 
+        if (this.allowed_numbers_operations.indexOf(operation)>=0) {
+          switch (operation) {
+            case "+":
+        //   var output = inputValue.forEach(mySum);
+              var reducer = (accumulator, curr) => accumulator + curr;
+              break
+            case "*":
+              var reducer = (accumulator, curr) => accumulator * curr;
+              break
+            case "**":
+              var reducer = (accumulator, curr) => accumulator ** curr;
+              break
+            case "/":
+              var reducer = (accumulator, curr) => accumulator / curr; 
+              break            
+            case "-":
+              var reducer = (accumulator, curr) => accumulator - curr; 
+              break                   
+          }
+        
+          var output = (inputValue.reduce(reducer));
+          element.innerHTML += this.title + operation + " --> " + output + '<br>';
+
+        } else {
+            
+          this.content = '';
+          element.innerHTML = this.title + operation + " --> " + output + '<br>';
+        }
+    } else {
+        if (this.allowed_lists_operations.indexOf(operation)>=0) {
+        //   switch (operation) {
+        //     case "concat":
+        //       var output = (accumulator, curr) => accumulator + curr;
+        //       break
+        //     case "endsWith":
+        //       var output = (accumulator, curr) => accumulator * curr;
+        //       break
+        //     case "**":
+        //       var output = (accumulator, curr) => accumulator ** curr;
+        //       break
+        //     case "/":
+        //       var output = (accumulator, curr) => accumulator / curr; 
+        //       break            
+        //     case "-":
+        //       var output = (accumulator, curr) => accumulator - curr; 
+        //       break                   
+          }
+        
+        // var output = (inputValue.reduce(reducer));
+        element.innerHTML += this.title + operation + " --> " + output + '<br>';
+    }
+
+  }
+  
+}
+
+var mathCalcultorAll {
+  
+}
+
+</script>
+</head>
+
+<body>
+    <div class="main-container">
+
+        <div class="heading-fixed">
+            <div class="heading-wrapper">
+                <div class="top-heading">
+                    <h1>Interacciona</h1>
+                </div>
+                <div class="middle-heading">
+                    To create a better world
+                   
+                </div>  
+                <div class="bottom-heading">
+
+                </div>
+            </div>
+        </div>
+        <div class="content-wrapper cr-typeFlexCol">
+            <div class="content-text">
+                <h2>Welcome to Javascript Tester</h2>
+            </div>
+            <div class="content-text">
+                <div id="div_write_01">
+                    <script type="text/javascript">
+                        // user = { role: 'paid' };
+                        // guide.renderContent(user.role);
+                        // removeFirstAndLast([1,2,3,4,5]);
+                        
+                        mathCalculator.renderContent([0,1,2,3,4,5],'*')
+                        mathCalculator.renderContent([1,2,3,4,5],'+')
+                        mathCalculator.renderContent([1,2,3,4,5],'**')
+                        mathCalculator.renderContent([1,2,3,4,5],'/')
+                        mathCalculator.renderContent([1,2,3,4,5],'-')
+
+                    </script>
+                </div>
+                <div id="div_write_02">
+                    <script type="text/javascript">
+                        // "El veloz murciélago hindú comía feliz cardillo y kiwi". 
+                    </script>
+                .</div>
+            </div>
+            <div class="content-text">
+                <div class="link-alone">
+                    <a href="signup.html">Sign Up</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-menu">
+            <div class="link">
+                <a href="theperson.html">The Person</a>
+            </div>
+            <div class="link">
+                <a href="portfolio.html">Portfolio</a>
+            </div>
+            <div class="link">
+                <a href="legal.html">Legal</a>
+            </div>                        
+        </div>
+        <div class="close-footer">
+            &copy; Interacciona &#124; All rights reserved 
+        </div>
+    </div>
+</body>
+</html>
