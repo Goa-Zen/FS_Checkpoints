@@ -1,0 +1,38 @@
+/* Buttons */
+.centered-btn-wrapper {
+    align-content: center;
+    margin-top:15px;
+}
+.btn-wrapper {
+    margin-top:15px;
+}
+.btn {
+    font-size: 1.25em;
+    background-color: lightgrey;
+    color:#11122b;
+    padding: 10px 25px;
+    border: 1px solid #11122b;
+    border-radius: 20px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.btn:active {
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.4);
+   
+}
+
+#btn-exit-code-tester {
+    background-color: transparent;
+    color:aliceblue;
+    border: 0px transparent;  
+}
+#btn-exit-code-tester:hover {
+    font-weight:900; 
+    cursor: pointer;
+}
+
+@media (min-width: 769px) {
+
+ 
+}

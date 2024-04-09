@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kufam&family=Merriweather:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0f3793b933.js" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+    <script src="js/codetester.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/form.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/buttons.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/codetester.css" />
+    <title>Interact</title>
+
+<script type="text/javascript">
+           
+           
+
+         
+</script>
+</head>
+
+<body>
+    <div class="main-container">
+
+        <div class="heading-fixed">
+
+            <div class="heading-wrapper">
+                <div class="top-heading">
+                    <h1>Interacciona</h1>
+                </div>
+                <div class="middle-heading">
+                    Silvia Iturrioz
+                </div>        
+
+                <div class="bottom-heading">
+                    
+                    <div class="goto-bar">
+                        <div class="goto-nav-link">
+                            <a href="#Exercise-solution">1. Previous Exercise</a>
+                        </div>
+                        <div class="goto-nav-link">
+                            <a href="#Exercise">2. Exercise</a>
+                        </div>   
+                        <div class="goto-nav-link">
+                            <a href="#Concepts">3. Concepts</a>
+                        </div>           
+                        <div class="goto-nav-link">
+                            <a href="#Homeworks">4. Homeworks</a>
+                        </div>                                                                        
+                    </div>
+                </div>
+                
+                <!-- <div class="close-footer">
+                    &copy; Interacciona &#124; All rights reserved 
+                </div> -->
+                       
+            </div>
+ 
+        </div>
+
+        <div class="content-wrapper cr-typeFlexCol">
+            <div id="abs-code-tester">
+                <div class="code-buttons">
+                    <button id="btn-exit-code-tester" class="btn" type="submit" > X </button>
+                </div>                
+                <div class="code-input">
+                    <div id="function-text">
+
+                    </div>
+                    <textarea name="code-txt-area" id="code-txt-area"  rows="10">
+
+                    </textarea>
+                    <div id="function-return">
+
+                    </div>    
+                    <div class="hidden-div">
+                        <div class="color-red" id="function-return_slice1">
+
+                        </div>           
+                        <div class="color-blue" id="function-return_slice2">
+    
+                        </div>   
+                    </div>                                               
+                </div>
+                <div id="code-checker-button">
+                    
+
+                </div>
+                <div id="code-error">
+                   
+                </div>                
+                <div id="div-tester-code-output">
+
+                </div>
+         
+            </div>
+
+            <div class="content-text">
+                <h2>Welcome to Javascript Tester</h2>
+                <div id="today-is-function-expresion">
+
+                </div>
+                <script type="text/javascript">
+                    var element = document.getElementById("today-is-function-expresion");
+                    element.innerHTML = todayIs();
+                </script>
+
+            </div>
+            <div id="Exercise-solution">
+                <h3>1. PREVIOS EXERCISE</h3>
+                <div class="explain">
+                    <p>Para hacer el tester de funciones string (3. 2. ¿Cuáles son algunos tipos de datos JS?) hemos usado dos funciones.</p>
+                    <p>Pero realmente esto podemos hacerlo con una única closure que recoja ambas variables.</p>
+                    <p>Hacer la llamada a los "addEventListener" para que todo funcione como en el tester de este manual.</p>                    
+                    <p>
+                        Vamos a definir una variable string sobre la que aplicaremos todos los ejemplos citados:
+                    </p>
+                    <pre class="hljs"><code><div class="div-code">
+let str = 'El veloz murciélago hindú comía feliz cardillo y kiwi';
+                    </div></code></pre>
+
+                </div>
+                <h4>Simulador de funciones</h4>
+                <p>
+                    En este simulador no vamos a incluir las tres funciones que no reciben parámetros, 
+                    cuyo resultado sobre nuestra declarada variable "str" sería el siguiente en cada caso, siendo 
+                    "var str = '   El veloz murciélago hindú prueba feliz cardillo y kiwi';
+
+                </p>
+
+                <div class="form">
+                    <select id="string-functions" size="10">
+                        <optgroup label="First Type String Functions">
+
+                            <option value="charAt(number)">charAt(number)</option>
+                            <option value="concat(cadena)">concat(cadena)</option>
+                            <option value="includes(cadena)">includes(cadena)</option>
+                            <option value="endsWith(cadena)">endsWith(cadena)</option>
+                            <option value="startsWith(cadena)">startsWith(cadena)</option>
+                        </optgroup>
+                        <optgroup label="Second Type String Functions">
+                            <option value="match(cadena/RegExp)">match(cadena/RegExp)</option>
+                            <option value="replace(cadena_search/RegExp_search, cadena_replace/regular_expr_replace)">str.replace(cadena_search/RegExp_search, cadena_replace/regular_expr_replace) </option>
+                            <option value="search(cadena/RegExp)">search(cadena/RegExp) </option>
+                            <option value="indexOf(cadena))">indexOf(cadena) </option>
+                            <option value="lastIndexOf(cadena)">lastIndexOf(cadena) </option> 
+                        </optgroup>    
+                        <optgroup label="Thrid Type String Functions">                      
+                            <option value="slice(start_position, end_position -optional)">slice(start_position, end_position -optional)</option>
+                            <option value="toUpperCase()">toUpperCase()</option>
+                            <option value="toLowerCase()">toLowerCase()</option>
+                            <option value="trim()">trim()</option>
+                        </optgroup>
+
+                    </select>
+                
+                    <div id="args-section">
+
+                    </div>
+                    
+                    <div class="btn-wrapper">
+                        <button id="btn-string-functions-code-tester" class="btn" type="submit" > Execute function </button>
+                    </div>
+                </div>
+            
+                <div class="div_code_tester">
+                    <p class="color-red"> Respuesta: </p>                
+                    <div id="id-string-functions-tester">
+
+                    </div>                            
+                    <script type="text/javascript">    
+                    // var str = 'El veloz murciélago hindú comía feliz cardillo y kiwi';
+                    let run_operator = stringOperator;
+                    element = document.getElementById('string-functions');
+                    element.addEventListener("change", function() {
+                        document.getElementById('args-section').innerHTML = run_operator.showArgs(this.value);
+                    });
+
+                    element = document.getElementById('btn-string-functions-code-tester');
+                    element.addEventListener("click", function() {
+                        let str = '   El veloz murciélago hindú prueba feliz cardillo y kiwi';
+                        document.getElementById('id-string-functions-tester').innerHTML = run_operator.showResultStringFunction(str);
+                    });
+
+                    </script>                   
+                </div>      
+                <div class="explain">
+                    <h3>Código Ejercicio anterior</h3>
+                    <pre class="hljs"><code><div class="div-code">
+var stringOperator = {
+    str: null,
+    opcion: null,
+    showArgs: function (caller_value) {
+        this.opcion = caller_value;
+        switch (caller_value){
+            case "toUpperCase()":
+            case "toLowerCase()":
+            case "trim()":
+                return '<input type="hidden" id="value_one" value="error" ></input> ' +
+                        '<input type="hidden" id="value_two" value="error" ></input> ';
+            case "charAt(number)":
+                return '<label for="value_one">Introduce the numeric argument:</label> '  +
+                        '<input type="number" id="value_one" value="" required placeholder = "Introduce the numeric argument:" ></input> '  +
+                        '<input type="hidden" id="value_two" value="error" ></input> ';
+        
+            case "slice(start_position, end_position -optional)":    
+                return '<label for="value_one">Introduce the numeric argument:</label> '  +
+                        '<input type="number" id="value_one" value="" required placeholder = "Introduce the numeric argument:" ></input> ' +
+                        '<label for="value_one">OPTIONAL: Introduce the numeric argument:</label> '  +
+                        '<input type="number" id="value_two" value="" placeholder = "OPTIONAL Introduce the numeric argument:" ></input> ';
+            case "replace(cadena_search/RegExp_search, cadena_replace/regular_expr_replace)":
+                return '<label for="value_one">Introduce the argument:</label> '  +
+                        '<input type="text" id="value_one" value="" required placeholder = "Introduce the argument:" ></input> '  +
+                        '<label for="value_two">Introduce the argument:</label> '  +                   
+                        '<input type="text" id="value_two" value="" required placeholder = "Introduce the argument:" ></input>';            
+            default:
+                return '<label for="value_one">Introduce the argument:</label> ' + 
+                        '<input type="text" id="value_one" value="" required placeholder = "Introduce the argument:" ></input> '  +
+                        '<input type="hidden" id="value_two" value="error" ></input> ';
+        }
+    },
+    showResultStringFunction: function(str) {
+        // var str = '   El veloz murciélago hindú prueba feliz cardillo y kiwi';
+        
+        var arguments = [];
+        var el = document.getElementById("value_one");
+        arguments.push(el.value);
+        el = document.getElementById("value_two");
+        arguments.push(el.value);
+        if (arguments[0]==='' || arguments[1]==='') {
+            return "Has de introducir algún valor en los parámetros";
+        }
+        try {
+            switch (this.opcion){
+                case "toUpperCase()":
+                    return str.toUpperCase();
+                case "toLowerCase()":
+                    return str.toLowerCase();
+                case "charAt(number)":
+                    return str.charAt(arguments[0]);
+                case "trim()":
+                    return str.trim();
+                case "slice(start_position, end_position -optional)":  
+                    if (arguments[1]==='') {
+                        return str.slice(arguments[0],arguments[1]);
+                    }else {
+                        return str.slice(arguments[0],arguments[1]);
+                    }
+                    
+                case "concat(cadena)":
+                    return str.concat(arguments[0]);
+                case "includes(cadena)":
+                    return str.includes(arguments[0]);
+            
+                case "endsWith(cadena)":
+                    return str.endsWith(arguments[0]);
+                case "startsWith(cadena)":
+                    return str.startsWith(arguments[0]);
+                case "replace(cadena_search/RegExp_search, cadena_replace/regular_expr_replace)":
+                    return str.replace(arguments[0],arguments[1]);
+                case "match(cadena/RegExp)":
+                    return str.match(arguments[0]);
+                case "search(cadena/RegExp)":
+                    return str.search(arguments[0]);
+                case "indexOf(cadena))":
+                    return str.indexOf(arguments[0]);
+                case "lastIndexOf(cadena)":    
+                    return str.lastIndexOf(arguments[0]);
+                default:
+                    throw "The function does not exist!!";
+            }
+        } catch (error) {
+        
+            return "Has de introducir algún valor en los parámetros";
+        }
+    } 
+
+}      
+
+
+                    </div></code></pre>
+
+                    <p>Y ahora la llamada que hacemos mediante los eventlistener son los siguientes:</p>
+                    <pre class="hljs"><code><div class="div-code">
+let run_operator = stringOperator;
+element = document.getElementById('string-functions');
+element.addEventListener("change", function() {
+    document.getElementById('args-section').innerHTML = run_operator.showArgs(this.value);
+});
+
+element = document.getElementById('btn-string-functions-code-tester');
+element.addEventListener("click", function() {
+    let str = '   El veloz murciélago hindú prueba feliz cardillo y kiwi';
+    document.getElementById('id-string-functions-tester').innerHTML = run_operator.showResultStringFunction(str);
+});
+                    </div></code></pre>
+                </div>    
+            </div>
+            <div id="Exercise">
+                <h2>2. EXERCISE</h2>
+                <h4>Exercise  </h4>
+                <div class="explain">
+                    <p>
+
+                        -Cree un bucle for en JS que imprima cada nombre en esta lista. miLista = “velma”, “exploradora”, “jane”, “john”, “harry”
+                    </p>
+                    <p>
+                        -Cree un bucle while que recorra la misma lista y también imprima los nombres. 
+                        Nota: Recuerda crear un contador para que el ciclo no sea infinito.
+                    </p>
+                    <p>    
+                        -Cree una función de flecha que devuelva "Hola mundo".
+                    </p>
+
+                </div>
+                <h5>SOLUCIÓN</h5>
+                <div class="explain">
+                    <p> Creamos const miLista = [ 'velma', 'exploradora', 'jane', 'john', 'harry' ];.</p>  
+                    <pre class="hljs"><code><div class="div-code">
+
+const miLista = [ 'velma', 'exploradora', 'jane', 'john', 'harry' ];
+
+                    </div></code></pre>                    
+                    <p>Creamos el bucle <strong>for</strong> e imprimimos los nombres:</p>
+                    <pre class="hljs"><code><div class="div-code">
+var output_text = null;
+miLista.forEach(function(element) {
+    output_text=`${output_text} ${element}`;
+});
+
+var div_exercise_01 = document.getElementById('div_exercise_01');
+div_exercise_01.innerHTML = `1. Bucle for: ${output_text}`;
+
+        </div></code></pre>                         
+        <p>Creamos el bucle <strong>while</strong> e imprimimos los nombres:</p>
+        <pre class="hljs"><code><div class="div-code">
+var i = 0;
+while (i < miLista.length) {
+    output_text=`${output_text}${miLista[i]}`;
+    i++;
+}
+
+div_exercise_01.innerHTML = `${div_exercise_01.innerHTML} ${output_text}`;
+
+
+                    </div></code></pre>     
+                    <p>Cree una <strong>función de flecha </strong>que devuelva "Hola mundo":</p>
+                    <pre class="hljs"><code><div class="div-code">
+helloWorld = () => { return "Hola mundo"; }
+div_exercise_01.innerHTML = `${div_exercise_01.innerHTML} ${helloWorld()}`;
+
+
+                    </div></code></pre>     
+                    <p class="color-red"> Solución: </p>    
+                    <div id="div_exercise_01">
+
+                    </div>   
+                    <script type="text/javascript"> 
+                        let output_text = '<ul>';
+                        const miLista = [ 'velma', 'exploradora', 'jane', 'john', 'harry' ];
+    
+                        miLista.forEach(function(element) {
+                            output_text=`${output_text}<li>${element}</li>`;
+                        });
+                        output_text=`${output_text}</ul>`;
+                        let div_exercise_01 = document.getElementById('div_exercise_01');
+                        div_exercise_01.innerHTML = `<p>1. Bucle <strong>for</strong>:</p> ${output_text} `;
+    
+                        let i = 0;
+                        output_text = '<ul>';
+                        while (i < miLista.length) {
+                            output_text=`${output_text}<li>${miLista[i]}</li>`;
+                            i++;
+                        }
+                        output_text=`${output_text}</ul>`;
+    
+                        div_exercise_01.innerHTML = `${div_exercise_01.innerHTML} <p>2. Bucle <strong>while</strong>:</p> ${output_text}`;
+    
+                        helloWorld = () => { return "Hola mundo"; }
+                        div_exercise_01.innerHTML = `${div_exercise_01.innerHTML} <p>3. <strong>Función arrow</strong>:</p> ${helloWorld()}`;
+                        
+    
+                    </script>   
+                </div>
+                <div class="explain">
+                    <h3>Vamos a hacerlo mediante nuestro "Code Tester"</h3>
+                    <pre><code><div class="div-code">
+
+function askedExercise() {
+    try {
+        let output_text = '1.Bucle for: ';
+        const miLista = [ 'velma', 'exploradora', 'jane', 'john', 'harry' ];
+
+        miLista.forEach(function(element) {
+            output_text=`${output_text} ${element}. `;
+        });
+        output_text=`${output_text} `;
+        
+
+        let i = 0;
+        output_text=`${output_text} 2.Bucle while: `; 
+        while (i < miLista.length) {
+            output_text=`${output_text}${miLista[i]}. `;
+            i++;
+        }
+        output_text=`${output_text}`;
+        helloWorld = () => { return "Hola mundo"; }
+        output_text=`${output_text}3.Función arrow: ${helloWorld()} .`;
+        return output_text;
+            
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }   
+};
+askedExercise();
+
+                            </div></code></pre>
+                            <div class="container-open-tester">
+                                <a class="open-tester" href="#">Open Code Tester</a>
+                            </div>                       
+                </div>
+
+             
+            </div> 
+
+            <div id="Concepts">
+                <h2>3. CONCEPTS</h2>
+                <ol class="sub-menu">
+                    <li><a href="#to-one"> ¿Qué tipo de bucles hay en JS?</a></li>
+                    <li><a href="#to-two">¿Cuáles son las diferencias entre const, let y var?</a>  </li>     
+                    <li><a href="#to-three">¿Qué es una función de flecha?</a> </li>
+                    <li><a href="#to-four">¿Qué es la deconstrucción de variables? </a></li>     
+                    <li><a href="#to-five">¿Qué hace el operador de extensión en JS?</a> </li>
+                    <li><a href="#to-six">¿Qué es la programación orientada a objetos?</a> </li>     
+                    <li><a href="#to-seven"> ¿Qué es una promesa en JS?</a></li>
+                    <li><a href="#to-eight">¿Qué hacen async y await por nosotros?    </a></li>                                     
+                </ol>
+
+                <div id="to-one">
+                    <h3>3. 1. ¿Qué tipo de bucles hay en JS?</h3>
+
+                    <div class="explain">
+                        <p>
+                            Los bucles son instrucciones que nos permiten recorrer todos los elementos de un array, uno 
+                            por uno, o mientras que se de una condición.
+                        </p>
+                        <p>
+                            Los bucles son absolutamente necesarios. Aunque existen muchas funciones que operan sobre todo tipo de objetos, 
+                            a veces necesitamos ser capaces de recorrer los elementos para operar sobre ellos. Sin los bucles, esto sería imposible 
+                            y por tanto sería imposible implementar algoritmos complejos o dinamismo a una aplicación.
+                        </p>
+                        <p>Existen fundamentalmante dos tipos:</p>
+                        <ol>
+                            <li>for</li>
+                            <li>while</li>
+                        </ol>
+                        <p>
+                            <strong>for </strong>recorre los elementos, desde un elemento inicial hasta otro final que 
+                            determinamos o viene determinado por la propia estructura de la colección que recorremos.
+                        </p>
+                        <p>
+                            <strong>while</strong> recorre un elemento hasta que se produce una situación donde le 
+                            decimos que deje de recorrerlo. OJO! Es importante al definir un bucle "while"
+                            determinar una instrucción que nos impida entrar en un bucle "infinito".
+                        </p>
+                        <h4>1. for</h4>
+                        <p>
+                            Existen 3 tipos:
+                            <ul>
+                                <li>for (var i = 0; i < 4; i++)</li>
+                                <li>for / in</li>
+                                <li>forEach</li>
+                            </ul>
+                        </p>
+                    </div>
+
+                    <div class="explain">     
+                        <h5>for (var i = 0; i < 4; i++)</h5>
+                        <p>
+                            El array attributes lo recorremos desde el primer elemento, "i=0", hasta el último elemento
+                            "attributes.length" (recordemos que al empezar los arrays en cero el último elemento del array 
+                            será la longitud del array menos uno).
+                        </p>
+                        <pre class="hljs"><code><div class="div-code">    
+function goAcrossFor () {
+    try {
+        const attributes=['Resistance', 'Easiness cleaning', 'sustanbility values', 'Cool'];
+        let lista =[];
+        for (var i = 0; i < attributes.length; i++) {
+            lista.push(`${i} - ${attributes[i]}`);
+        }
+        return lista;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+goAcrossFor ();
+
+                        </div></code></pre>
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>   
+                    </div>
+
+                    <div class="explain">     
+                        <h5>for / in</h5>
+                        <p>
+                            El array attributes lo recorremos desde el primer elemento hasta el último, pero no le indicamos
+                            cual es el attributes al que accedemos mediante un indice (attributes[0]), sino que decimos:
+                            "Para cada elemento en la colección (o en este caso array)", "for (elemento en los elementos)".
+                        </p>                        
+                        <pre class="hljs"><code><div class="div-code">  
+
+function goAcrossFor () {
+    try {
+        const attributes=['Resistance', 'Easiness cleaning', 'sustanbility values', 'Cool'];  
+        let lista =[];
+        for (attribute in attributes){
+            lista.push( attributes[attribute]);
+        }    
+        return lista;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+goAcrossFor ();
+                        </div></code></pre>
+  
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>                                           
+                    </div>
+
+                    <div class="explain">                                 
+                        <h5>forEach</h5>
+                        <p>
+                            Esta opción recorre cada elemento pero usamos la instrucción "forEach" que luego recoge una
+                            función para decirle que pase por todos los elementos del array.
+                        </p>
+                        <pre><code><div class="div-code">
+function goAcrossFor () {
+    try {
+        const attributes=['Resistance', 'Easiness cleaning', 'sustanbility values', 'Cool'];  
+        let output_text = '';
+        attributes.forEach(function(attribute) {
+            output_text=`${output_text} - ${attribute}`;     
+        });
+        return output_text;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+goAcrossFor ();
+                        </div></code></pre>
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>       
+
+                    </div>
+                    <div class="explain">
+                        <h4>2. while</h4>
+                        <p>
+                            Existen 2 tipos:
+                            <ul>
+                                <li>while()</li>
+                                <li>do {} while()</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="explain">     
+                        <h5>while()</h5>
+                        <p>
+                            Empezamos por la instrucción donde le decimos "Mientras que se de esta situación",
+                            en este caso sería que la suma de los valores sea menor que el valor máximo ("max_value_sum")
+                            y que el número de elementos en la lista de salida "list_of_values", sea menor a
+                            la longitud determinada "len", que en este caso es 10.
+                        </p>
+                        <pre class="hljs"><code><div class="div-code">    
+function goAcrossWhile () {
+    try {
+        let len = 10;
+        let max_value_sum = 100;
+        let ratio = Number(max_value_sum/len);
+        let sum_of_values = 0;
+        let list_of_values = [];
+        
+        while (sum_of_values < max_value_sum && list_of_values.length < Number(len)) {
+            let value = Math.round(Math.round(Math.random()* ratio));
+            sum_of_values= Number(sum_of_values) + Number(value);
+            list_of_values.push(value);
+        }
+
+        return list_of_values;  
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+goAcrossWhile ();
+                        </div></code></pre>
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>       
+                    </div>
+                    <div class="explain">                             
+                        <h5>do {} while()</h5>
+                        <p>
+                            Esta instrucción podría parecer idéntica a la anterior, pero si nos fijamos, en esta, suceda
+                            la condición que suceda en primer lugar se ejecuta al menos una vez 
+                            la instrucción contenida en el "do", 
+                            mientras que en la anterior, al evaluar la condición al principio, si nada más iniciar 
+                            el bucle no se cumple, no se ejecuta nunca ninguna instrucción.
+                        </p>
+                        <pre class="hljs"><code><div class="div-code">    
+function goAcrossWhile () {
+    try {
+        let len = 10;
+        let max_value_sum = 100;
+        let ratio = Number(max_value_sum/len);
+        let sum_of_values = 0;
+        let list_of_values = [];
+
+        do {
+            value = Math.round(Math.ceil(Math.random()* ratio));
+            sum_of_values= Number(sum_of_values) + Number(value);
+            list_of_values.push(value);
+        } while (sum_of_values < max_value_sum && list_of_values.length < len);
+
+        return list_of_values;  
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+goAcrossWhile ();
+                        </div></code></pre>
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>       
+                    </div>
+                    <div class="explain">     
+                        <p>
+                            !!! -- En defintiva, tenemos dos tipos de bucles en JS, 
+                            los bucles &quot;for&quot; y los bucles &quot;while&quot;. 
+                            En los primeros existe una instrucción para salirnos de ellos 
+                            &quot;break&quot; y en el segundo es necesario establecer 
+                            una condición para que pare porque sino acabaríamos 
+                            en un bucle infinito.
+                        </p>
+                        
+                    </div>
+ 
+
+                    <div class="goto-top-link">
+                        <a href="#Concepts">Concepts Menu ^</a>
+                    </div>  
+                </div>
+
+                <div id="to-two">
+                    <h3>3. 2. ¿Cuáles son las diferencias entre const, let y var?</h3>
+                    <div class="table">
+                        <div class="table-header">
+                            <div class="table-cell">característica</div>
+                            <div class="table-cell">var</div>
+                            <div class="table-cell">let</div>
+                            <div class="table-cell">const</div>
+                        </div>
+                        <div class="table-row-group">
+                            <div class="table-row">
+                                <div class="table-cell">Alcance</div>
+                                <div class="table-cell">
+                                    Su ámbito es <strong>de función local</strong> o <strong>global</strong>. 
+                                    Si es declarada dentro de una función, entonces solo es accedible en esa función. 
+                                    <br>
+                                    Si es global, está disponible su uso en general.
+    
+                                </div>
+                                <div class="table-cell">
+                                    Su ámbito es de bloque ({}) y la variable "let" solo está disponible en ese <strong>bloque</strong>.
+                                </div>
+                                <div class="table-cell">
+                                    Al igual que let solo está accesible dentro del <strong>bloque</strong> en la que han sido declaradas.
+                                </div>
+                            </div>    
+                            <div class="table-row">
+                                <div class="table-cell">Uso</div>
+                                <div class="table-cell">
+                                    Las variables con var <strong>se pueden volver a declarar y modificar</strong>,
+                                    <br>
+                                    Esto significa que podemos hacer esto dentro del mismo ámbito y no obtendremos un error.
+                                </div>
+                                <div class="table-cell">
+                                    <strong>Al igual que var</strong>,  una variable declarada con let puede ser actualizada dentro de su ámbito.
+                                    <br> 
+                                    <strong>A diferencia de var</strong>, una variable let no puede ser re-declarada dentro de su ámbito.
+                                    
+                                </div>
+                                <div class="table-cell">
+                                    <strong>"const" no puede modificarse ni volver a declararse.</strong>
+                                    <br>
+                                    Esto significa que el valor de una variable declarada 
+                                    con const es el mismo dentro de su ámbito. 
+                                </div>
+                            </div>        
+                            <div class="table-row">
+                                <div class="table-cell">Hoisting</div>
+                                <div class="table-cell">
+                                    Si no declaramos la variable "var", el sistema interpreta que lo ha declarado como "undefined"
+                                    , y la <strong>inicializa</strong> como tal.
+                                </div>
+                                <div class="table-cell">
+                                    <strong>A diferencia de var</strong> que se inicializa como undefined, 
+                                    la palabra clave let <strong>no se inicializa</strong>. 
+                                    <br>
+                                    Si intentas usar una variable let antes de declararla, obtendrás error.
+                                </div>
+                                <div class="table-cell">
+                                    Al igual que let, const las declaraciones const <strong>no se inicializan</strong>.
+                                </div>
+                            </div>                            
+                        </div>                                                                 
+                    </div>
+
+                    <div class="context">
+                        <p>
+                            Vamos a probar a sobre escribir "taste" nuestra variable declarada "var" 
+                            y la variable "len", nuestra variable declarada "let".
+                        </p>
+                        <pre class="hljs"><code><div class="div-code">    
+function tryVariableTypes () {
+    try {
+        let list_of_values = [];
+        var taste = 'mint';
+        let len = 10;
+        const max_value_sum = 100;
+        list_of_values.push(`original try, taste: ${taste}, longitud: ${len}, max value: ${max_value_sum}.`);
+        taste = 'strawberry';
+        list_of_values.push(`first change taste, taste: ${taste}, longitud: ${len}, max value: ${max_value_sum}.`);
+        len = 15;
+        list_of_values.push(`second change len, taste: ${taste}, longitud: ${len}, max value: ${max_value_sum}.`);
+        return list_of_values;  
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+tryVariableTypes ();
+                        </div></code></pre>
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div> 
+                        <p> 
+    
+                        </p>                        
+                    </div>
+                    <div class="context">
+                        <p>
+                            Volvemos a declarar la variable "taste" declarada como "var" y nos lo permite,
+                            sin embargo, si la variable "len", nuestra variable declarada "let" la volvemos a declarar,
+                            no nos lo permite.
+                        </p>
+                        <pre class="hljs"><code><div class="div-code">    
+function tryVariableTypes () {
+    try {
+        let list_of_values = [];
+        var taste = 'mint';
+        let len = 10;
+        const max_value_sum = 100;
+        list_of_values.push(`original try, taste: ${taste}, longitud: ${len}, max value: ${max_value_sum}.`);
+        var taste = 'strawberry';
+        list_of_values.push(`first change taste, taste: ${taste}, longitud: ${len}, max value: ${max_value_sum}.`);
+        let len = 15;
+        list_of_values.push(`second change len, taste: ${taste}, longitud: ${len}, max value: ${max_value_sum}.`);
+        return list_of_values;         
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+
+};
+tryVariableTypes ();
+                        </div></code></pre>
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div> 
+                        <p> 
+                            Vemos que si es posible reescribila.
+                        </p>                        
+                    </div>                    
+                    <div class="context">
+                        <p>
+                            Y ahora vamos a probar a sobre escribir "max_value_sum" nuestra variable declarada "const".
+                        </p>
+                        <pre class="hljs"><code><div class="div-code">    
+function tryVariableTypes () {
+    try {
+        let list_of_values = [];
+        var taste = 'mint';
+        let len = 10;
+        const max_value_sum = 100;
+        list_of_values.push(`original try, taste: ${taste}, longitud: ${len}, max value: ${max_value_sum}.`);
+        max_value_sum = 150;
+        list_of_values.push(`third change max_value_sum, taste: ${taste}, longitud: ${len}, max value: ${max_value_sum}.`);
+        return list_of_values;  
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+tryVariableTypes ();
+                        </div></code></pre>
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div> 
+                        <p> 
+                            Aunque pongamos "const max_value_sum = 150", no admitiría el valor.
+                        </p>                        
+                    </div> 
+
+                    <div class="goto-top-link">
+                        <a href="#Concepts">Concepts Menu ^</a>
+                    </div>  
+                </div>
+
+                <div id="to-three">
+                    <h3>3. 3. ¿Qué es una función de flecha?</h3>
+                    <div class="explain">
+                        <p>Existen fundamentalmante tres tipos de funciones:</p>
+    
+                        <h4>Funciones</h4>
+                        <p>
+                            <ol>
+                                <li>Declaración de función</li>
+                                <li>Expresión de función</li>
+                                <li>Funciones Flecha</li>
+                            </ol>
+                        </p>
+                        <div class="explain">
+                            <h5>1. Declaración de función</h5>
+                            <p>
+                                - Function Declarations: Devuelve un valor o ejecuta una acción.
+                            </p>
+        
+                            <p>
+                                <pre class="hljs"><code><div class="div-code">
+function todayIs(){
+    try{
+        var ahora = Date.now();
+        var today = new Date(ahora);
+        return `Today is:  ${today.toDateString()}`;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+let today = todayIs();
+                                </div></code></pre>  
+                            </p>
+                            <div class="container-open-tester">
+                                <a class="open-tester" href="#">Open Code Tester</a>
+                            </div>                               
+                            <p>
+                                De hecho es lo que vemos arriba en la página, que cuando entramos, tras el título nos dice el día que es hoy.
+                            </p>
+                            <p>Esto está hecho con la declaración "var todayIs", es decir mediante la "Function Expressions".</p>
+                        </div>
+                        <div class="explain">
+                            <h5>2. Expresión de función</h5>
+                            <p>
+                                - Function Expressions: una función de expresión es una función 
+                                que queda almacenada dentro de la variable.
+                            </p>
+                            <p>
+        
+        
+                            </p>
+                                <pre class="hljs"><code><div class="div-code">
+        
+var todayIs = function() {
+    try {
+        var ahora = Date.now();
+        var today = new Date(ahora);
+        return `Today is:  ${today.toDateString()}`;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+todayIs();
+                                </div></code></pre>                         
+                            </p>     
+                            <div class="container-open-tester">
+                                <a class="open-tester" href="#">Open Code Tester</a>
+                            </div>                      
+                        </div>
+
+    
+                        <div class="explain">
+
+                            <h5>Funciones Flecha</h5>
+                            <p>
+                                - Arrow Function: una función flecha nos devuelve un valor, que es el que queda almacenado
+                                dentro del objeto (como en el caso del ejemplo), o sencillamente devuelve un valor. En principio 
+                                es como cualquier otra función pero además de estar escrita de forma más "resumida":
+                                
+                            </p>
+                            <ul>
+                                <li> Las funciones de flecha no tienen this. Si se accede a this, se toma el contexto del exterior.</li>
+                                <li>
+                                    JavaScript ofrece una gran flexibilidad cuando se trata de funciones. 
+                                    Se pueden pasar, usar como objetos, 
+                                    y redirigir las llamadas entre ellas y decorarlas. 
+                                    Como la función flecha no tienen variable "arguments" es ideal para ello.
+                                </li>
+                                <li>
+                                    Las variables flecha al no tener this, no pueden ser usadas como constructores, y por tanto no 
+                                    se pueden utilizar con "New".
+                                </li>
+                                <li>
+                                    La diferencia entre una función de flecha => 
+                                    y una función regular llamada con .bind(this):<br>
+
+                                    .bind(this) crea una “versión enlazada” de la función y la función flecha => no crea ningún enlace. 
+                                    La función simplemente no tiene this. <br>
+                                    La búsqueda de ‘this’ se realiza exactamente de la misma manera 
+                                    que una búsqueda de variable regular, en el entorno externo.
+                                </li>
+                            </ul>
+                            <pre><code><div class="div-code">
+  
+function operationsComputer() {
+    try {
+        this.arguments = [15,30,10,45];
+
+        this.sum = () => {
+            let obj = this.arguments;
+            let reducer = (accumulator, curr) => accumulator + curr;
+            return Number((obj.reduce(reducer))); 
+        }
+        this.mean = () => {
+            let obj = this.arguments;
+            let reducer = (accumulator, curr) => accumulator + curr;
+            return Number((obj.reduce(reducer)))/Number(obj.length); 
+        } 
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }   
+};
+
+let oc = new operationsComputer();
+let suma = oc.sum();
+                            </div></code></pre>
+                            <div class="container-open-tester">
+                                <a class="open-tester" href="#">Open Code Tester</a>
+                            </div>   
+  
+                        </div>   
+                       
+                    </div>
+                    
+                    <div class="goto-top-link">
+                        <a href="#Concepts">Concepts Menu ^</a>
+                    </div>  
+                </div>
+
+                <div id="to-four">
+
+                    <h3>3. 4. ¿Qué es la deconstrucción de variables?</h3>
+                    <div class="explain">
+                        
+                        <p>
+                            La sintaxis de deconstrucción es una funcionalidad de JavaScript que 
+                            permite extraer valores de arreglos o propiedades de objetos en distintas variables. 
+                            Es decir, podemos extraer datos de arreglos y objectos y asignarlos a variables.
+                        </p>
+                        <p>
+                            ¿Qué es un arreglo en JavaScript?
+                        </p>
+                        <p>
+                            Todos los elementos en un arreglo están separados por una comma(,).
+                            Por ejemlo. Un par de square brackets [] representa un arreglo en JavaScript.
+                        </p>
+                        <p>                            
+                            En JavaScript, los arreglos pueden ser una colección de elementos de cualquier tipo, 
+                            lo que significa que tú puedes crear un arreglo  
+                            con elementos de tipo Cadena , Boolean, Número, Objetos, e incluso otros Arreglos.
+                        </p>
+                    </div>
+
+   
+                    <div class="explain">                        
+                        <p>
+                            Si declaramos un array, por ejemplo "let taxes = [0.02, 0.20, 0.40, 0.45, 0.50]". 
+                            Si quisieramos conseguir el primer o segundo elemento, tradicionalmente, hubiéramos llamado
+                            a taxes[0] y taxes[1] y hubiéramos conseguido los valores.
+                        </p>
+                        <p>
+                            Actualmente podemos hacerlo de otra forma, que es mediante la <strong>Deconstrucción</strong>.
+                        </p>
+
+                        <pre class="hljs"><code><div class="div-code">
+function desconstruction() {
+    try {
+        let taxes = [0.02, 0.20, 0.40, 0.45, 0.50];
+        let [first,second] = taxes;
+        return `La primera tasa es del ${first}% y la segunda del ${second}% `;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+desconstruction();
+                        </div></code></pre>     
+
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div> 
+                    </div>
+                    <p>
+                        También podríamos haber declarado la variable directamente como <strong>let [first,second] = [0.02, 0.20];</strong>.
+                    </p>
+                    <div class="explain">
+                        <p>
+                            Y podemos hacerlo respecto a <strong>cualquier elemento</strong>, indicando con comas la posición del 
+                            elemento que queremos.
+                        </p>
+
+                        <pre class="hljs"><code><div class="div-code">
+function desconstruction() {
+    try {
+        let taxes = [0.02, 0.20, 0.40, 0.45, 0.50];
+        let [first,,third,,fifth] = taxes;
+        return `La primera tasa es del ${first}%, la tercera del ${third}%  y la quinta del ${fifth}% `;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+desconstruction();
+                        </div></code></pre>    
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>  
+                    </div>
+                    <div class="explain">
+                        <p>
+                            Y también podemos hacerlo asignando por ejemplo la primera variable a un variable de llamada
+                            y <strong>el resto, (operador rest son 3 puntos "...")</strong> de la llamada a otra.
+                        </p>
+
+                        <pre class="hljs"><code><div class="div-code">
+function desconstruction() {
+    try {
+        let taxes = [0.02, 0.20, 0.40, 0.45, 0.50];
+        let [first,...resto] = taxes;
+        return `La primera tasa es del ${first}%, y el resto es ${resto}% `;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+desconstruction();
+                        </div></code></pre>    
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>  
+                    </div>       
+                    <div class="explain">
+                        <p>
+                            Y también podemos hacerlo con una <strong>función</strong>.
+                        </p>
+
+                        <pre class="hljs"><code><div class="div-code">
+function desconstruction() {
+    try {
+        function getdec() {
+            let taxes = [0.02, 0.20, 0.40, 0.45, 0.50];
+            return taxes;
+        }
+        
+        let [first,...resto] = getdec();
+        return `La primera tasa es del ${first}%, y el resto es ${resto}% `;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+desconstruction();
+                        </div></code></pre>    
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>  
+                    </div>     
+                    <div class="explain">
+                        <p>
+                            Los <strong>valores predeterminados</strong> se pueden asignar a las variables 
+                            en caso de que el valor extraído sea  <strong>undefined</strong>.
+                        </p>
+                        <p>
+                            En el ejemplo que voy a poner a continuación se muestra como al asignar los datos 
+                            y no poner más que un argumento el segundo se entiende como predeterminado.
+                        </p>
+
+                        <pre class="hljs"><code><div class="div-code">
+function desconstruction() {
+    try {
+        let [first = 0.02 ,second=0.20] =[0.1];
+        return `La primera tasa es del ${first}%, y la segunda es ${second}% `;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+desconstruction();
+                        </div></code></pre>    
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>  
+                    </div>                         
+                    <div class="explain">
+                        <p>
+                            Y podemos <strong>intercambiar valores</strong> mediante la <strong>deconstrucción 
+                                de variables y objetos</strong>.
+                        </p>
+                        <p>
+                            Vamos a coger el ejemplo del tema 2, "diferencias entre var, let y const", donde podíamos 
+                            observar que no es posible cambiar o redefinir una variable const dentro del mismo bloque.
+                        </p>
+
+                        <pre class="hljs"><code><div class="div-code">
+function tryVariableTypes () {
+    try {
+        var list_of_values = [];
+
+        const variableTypes = {
+            len: 10,
+            max_value_sum: 100
+          }
+          
+          const printVars = ({ len, max_value_sum  }) => {
+            list_of_values.push(`third change longitud: ${len}, max_value_sum, max value: ${max_value_sum}.`);
+            return list_of_values;  
+          }
+          const other_value = 150;
+          [variableTypes.max_value_sum] = [other_value];
+          return printVars(variableTypes);
+        
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+tryVariableTypes ();
+                        </div></code></pre>    
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>  
+                        <p>
+                            Intercambiar los valores es muy útil en varias situaciones 
+                            diferentes. Uno de los principales es cuando implementas algoritmos. 
+                            Uno de los procesos más comunes al que se enfrenta cuando implementa 
+                            una combinación o clasificación rápida o cualquiera de estos 
+                            <strong>algoritmos avanzados</strong>
+                            es la capacidad de intercambiar valores variables.
+                            
+                        </p>                        
+                    </div>                         
+   
+
+                     <div class="more-references">
+                        More references: <a href="https://www.freecodecamp.org/espanol/news/desestructuracion-de-arreglos-y-objetos-en-javascript/">JS deconstrucción</a>                          
+                    </div>
+
+                    <div class="goto-top-link">
+                        <a href="#Concepts">Concepts Menu ^</a>
+                    </div>  
+                </div>
+
+                <div id="to-five">
+                    <div class="explain">
+                        <h3>3.5. ¿Qué hace el operador de extensión en JS?</h3>
+                        <ul>
+                            <li>Para combinar arrays</li>
+                            <li>Para hacer una copia</li>
+                            <li>Usar con funciones como argumento</li>
+                            <li>Desconstrucción de objetos </li>
+                        </ul>   
+                        <p>
+
+                        </p>
+                    </div>
+
+                    <div class="explain">
+                        <h4>Para combinar arrays</h4>
+                        <p>
+                            <div class="color-red">NO SALE BIEN LA DIFERENCIA</div>
+                        </p>
+                        <pre class="hljs"><code><div class="div-code">
+function spreadTester() {
+    try {
+        let library_books = ['Coma', 'The last unicorn', 'The Great Gatsby', 'Fiesta'];
+        let new_books = ['From Whom the bells toll', 'Ulyses'];
+        library_books.push(new_books);
+        let output = library_books;
+
+        library_books = ['Coma', 'The last unicorn', 'The Great Gatsby', 'Fiesta'];
+        library_books.push(...new_books);
+        output = `First output: ${output}. Second output: ${library_books}.`;
+        return output;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }    
+};
+spreadTester();
+
+                        </div></code></pre>
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>                          
+                        <p>
+
+                        </p>                       
+                    </div>
+                    <div class="explain">
+                        <h4>Para hacer una copia</h4>
+                        <p>
+                            Si hacemos directamente la copia de un objeto, vemos, que si posteriormente añadimos
+                            un elemento a ese objeto, se añade, tanto a la copia como al original. Para evitar esto, 
+                            hacemos la copia usando la función <strong>".slice(posicion_inico, posicion_fin)"</strong> y de esa forma 
+                            quedan como dos objetos independientes. Es decir, incluso alterando el original no se 
+                            alteraría la copia.
+                        </p>
+                        <pre class="hljs"><code><div class="div-code">
+function spreadTester() {
+    try {
+        let library_books = ['Coma', 'The last unicorn', 'The Great Gatsby', 'Fiesta'];
+        let new_books = library_books;
+        new_books.push('Jane Eyre');
+        let output = library_books;
+        output = `First list: ${library_books}. Second list: ${new_books}.`;
+
+        library_books = ['Coma', 'The last unicorn', 'The Great Gatsby', 'Fiesta'];
+        new_books = library_books.slice();
+        new_books.push('Jane Eyre');
+        let output_slice = `First list: ${library_books}. Second list: ${new_books}.`;
+        output = `First output: ${output} Second output: ${output_slice}`;
+        return output;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+spreadTester();                            
+                        </div></code></pre>
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>                          
+                        <p>
+
+                        </p>                       
+                    </div>   
+                    <div class="explain">
+                        <h4>Usar funciones como argumentos</h4>
+                        <p>
+                            Vamos a usar la función "Math.pow()" que devuelve el valor de un número elevado a otro número.
+                        </p>
+                        <p>
+                            Imaginemos que lo que queremos es que en un array el primer elemento sea elevado al segundo
+                            elemento y así sucesivamente. Solo con el uso del operador de extensión es posible esto 
+                            ya que así la variable recoge el valor de los elementos del array correctamente. 
+                            Si probáis a quitar el operador de extensión (...), veréis que nos da un error.
+                        </p>                        
+                        <pre class="hljs"><code><div class="div-code">
+function spreadTester() {
+    try {
+        let to_pow = [3, 5, 1, 10, 2, 3];
+        return Math.pow(...to_pow);
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+spreadTester();                            
+
+                        </div></code></pre>
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>                          
+                        <p>
+
+                        </p>                       
+                    </div>   
+                    <div class="explain">
+                        <h4>Deconstrucción de objetos</h4>
+                        <p>
+                            <div class="color-red">
+                                NO FUNCINA, me devuelve {(intermediate value)(intermediate value)(intermediate value)(intermediate value)} is not iterable
+                                undefined
+                            </div>
+                        </p>
+                        <div id="prueba"></div>
+                        <script>
+function spreadTester() {
+    try {
+        const [name, company, ...locations] = {
+            name: 'The secret place',
+            company: 'Friendly Books S:L.',
+            location_1: 'La Castellana 28, Madrid 28046',
+            location_2: 'Calle de los Abades 6, Madrid 28012'
+        }
+        return locations;
+    }catch (err) {
+        // document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+// document.getElementById("prueba").innerHTML = spreadTester();
+
+const { starter, closer, ...relievers } = {
+    starter: 'Verlander',
+    closer: 'Giles',
+    relief_1: 'Morton',
+    relief_2: 'Gregerson'
+  }
+
+  document.getElementById("prueba").innerHTML = relievers;
+//   console.log(closer);
+//   alert(relievers);
+                        </script>
+                        <pre class="hljs"><code><div class="div-code">
+function spreadTester() {
+    try {
+        const [name, company, ...locations] = {
+            name: 'The secret place',
+            company: 'Friendly Books S:L.',
+            location_1: 'La Castellana 28, Madrid 28046',
+            location_2: 'Calle de los Abades 6, Madrid 28012'
+        }
+        return locations;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+spreadTester();  
+                        </div></code></pre>
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>                          
+                        <p>
+
+                        </p>                       
+                    </div>                                                      
+                    <div class="more-references">
+                        More references: <a href="https://www.freecodecamp.org/espanol/news/javascript-rest-vs-operador-de-propagacion-cual-es-la-diferencia/"">JS Spread: Operador de propagación</a>                          
+                    </div>
+
+                    <div class="goto-top-link">
+                        <a href="#Concepts">Concepts Menu ^</a>
+                    </div>  
+                </div>
+
+                <div id="to-six">
+                    <h3>3.6. ¿Qué es la programación orientada a objetos?</h3>    
+
+                        
+  
+                    <div class="explain">
+                        <p>Y en Javascript tenemos los denominados "Objects" también:</p>
+                        <p>Por ejemplo, creamos un objeto que represente a un libro, este libro tendrá unas características, como un author,
+                             el nombre del libro, un número de páginas, el nombre de la editorial que la publicó,.. etc
+                        </p>
+                        <p>Este libro además tendrá metodos, como abrir el libro, cerrarlo, pasar página. </p>                    
+                     
+                        <p>Por lo tanto, los objetos en JavaScript son estructuras de datos fundamentales que comprenden propiedades y métodos. 
+                            Mientras que los métodos son funciones/acciones que un objeto puede realizar, 
+                            las propiedades son características de un objeto.
+                        </p>
+                        <p>Los objetos te permiten agrupar datos relacionados y dividir el código en piezas lógicas. </p>
+                        <pre class="hljs"><code><div class="div-code">
+function showBook() {   
+    try {                         
+        var book = {
+            name: 'Fiesta',
+            pages: 152,
+            author: 'Ernest Hemingway',
+            publishers: {
+                Alianza: 90,
+                Bruguera: 80,
+                Alfaguara: 100
+            }
+        }
+
+        let output = `El libro ${book.name} fué escrito por ${book.author}, tiene ${book.pages} páginas. `;
+        output = `${output} Está disponible en: `:
+        output = `${output} Alianza - ${book.publishers['Alianza']} unidades.`  ;
+        output = `${output} Bruguera - ${book.publishers['Bruguera']} unidades.`;
+        output = `${output} Alfaguara- ${book.publishers['Alfaguara']} unidades.`;
+        return output;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }   
+};
+showBook();
+   
+                        </div></code></pre>
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>       
+                        <p>
+                            El libro en este caso, además de tener las propiedades "name","pages" y "author" tiene una <strong>propiedad anidada</strong> que recoge 
+                            los diferentes ejemplares disponibles en cada Editorial.
+                        </p>   
+                    </div>
+                    <div class="explain">               
+                        <p>
+                            Durante años JS no disponía de los tipos de procedimientos de la 
+                            programación orientada a objetos o "POO" ("OOP" en inglés). Una de las funciones más utilizadas 
+                            en otros programas, las <strong>"clases"</strong> no han estado disponible hasta versiones 
+                            más recientes de JS.                           
+                        </p>
+                        <p>
+                            La programación Orientada a objetos se define como 
+                            "un paradigma de la programación, una manera de programar específica, 
+                            donde se organiza el código en unidades denominadas clases, 
+                            de las cuales se crean objetos que se relacionan entre sí para conseguir 
+                            los objetivos de las aplicaciones".(FUENTE: artículo en pie de capítulo).
+    
+                        </p>
+                        <p>
+                            Las clases por tanto han sido como la referencia de lo que significa la programación orientada 
+                            a objetos, que es crear prototipos que definien características y métodos de los objetos 
+                            que permiten instancias y por tanto, con una plantilla podríamos crear 100 libros o los que 
+                            quisiéramos en realidad.
+                        </p>
+                        <pre class="hljs"><code><div class="div-code">
+function classTester (){
+    try{
+        class showBook {
+            constructor(book) {
+                this.book = book;  
+            }
+            valuesBook = () => {
+                let output = `El libro ${book.name} fué escrito por ${book.author}, tiene ${book.pages} páginas. `;
+                return output;
+            }
+            valuesPublishers() {
+                let output = `Está disponible en: `;
+                output = `${output} Alianza - ${book.publishers['Alianza']} unidades.`  ;
+                output = `${output} Bruguera - ${book.publishers['Bruguera']} unidades.`;
+                output = `${output} Alfaguara- ${book.publishers['Alfaguara']} unidades.`;
+                return output;
+            } 
+        }
+        var book = {
+            name: 'Fiesta',
+            pages: 152,
+            author: 'Ernest Hemingway',
+            publishers: {
+                Alianza: 90,
+                Bruguera: 80,
+                Alfaguara: 100
+            }
+        }
+        const mybook = new showBook(book);   
+        return `${mybook.valuesBook()} ${mybook.valuesPublishers()}`;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }   
+};
+classTester ();
+
+
+                    </div></code></pre>     
+                        
+                    <div class="container-open-tester">
+                        <a class="open-tester" href="#">Open Code Tester</a>
+                    </div>                    
+                    <div class="more-references">
+                        More references: <a href="https://desarrolloweb.com/articulos/499.php">Programación orientada a objetos</a>                          
+                    </div>
+                    
+                    <div class="goto-top-link">
+                        <a href="#Concepts">Concepts Menu ^</a>
+                    </div>  
+                </div>
+
+                <div id="to-seven">
+                    <h3>3. 7. ¿Qué es una promesa en JS?</h3>
+                    <div class="explain">
+                        <p>
+                            Las promesas en JavaScript sirven para manejar acciones asíncronas de manera 
+                            estructurada y legible.
+                        </p>
+                        <p>
+                            Cuando realizas una acción y esta no se completan de inmediato  
+                            (como llamadas a API, lecturas de archivos o consultas a bases de datos) 
+                             JavaScript necesita una forma de gestionar estas acciones sin condicionar 
+                             la ejecución del resto del código.
+                        </p>
+                        <p>
+                            En el ejemplo que vamos a poner a continuación no es exactamente como se utiliza 
+                            habitualmente, pero esto nos permitirá hacernos una idea de que cuando usamos una promesa 
+                            lo que estamos haciendo es manejar las operaciones que han de suceder de forma cronológica. 
+                            Imaginemos que después de pedir una serie de números aleatorios, estos han de sumar una cifra 
+                            determinada a priori. Si esto no lo hace, queremos que nos avise. Vamos a usar una promesa.
+                        </p>
+
+                        <div class="color-red">
+  
+                        </div>
+                        <pre class="hljs"><code><div class="div-code">
+function randomValues() {
+    try{
+        return new Promise((resolve, reject) => {
+            const len = 5;
+            const max_value_sum = 100;
+            var sum_of_values = 0 ;
+            var list_of_values = [];
+
+            do {
+                let value = Math.round(Math.round(Math.random()* (max_value_sum/len)));
+                sum_of_values= Number(sum_of_values) + Number(value);
+                list_of_values.push(value);
+            } while (sum_of_values < max_value_sum && list_of_values.length < len);   
+        
+            while (list_of_values.length < Number(len)) {
+                list_of_values.push(0);
+            }
+            let queda = max_value_sum - Number(sum_of_values); 
+            if (Math.abs(queda)!==0) {
+                reject(`No hemos obtenido la suma máxima deseada, ${max_value_sum}. Hemos obtenido ${sum_of_values} con ${list_of_values}`);
+            } else{
+                resolve(`Hemos obtenido la suma máxima deseada, ${max_value_sum}. Hemos obtenido ${sum_of_values} con ${list_of_values}`);
+            }
+        })
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }   
+};    
+randomValues()
+   .then(result => result)
+   .catch(error => error);
+
+                        </div></code></pre>
+
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>
+  
+                        <p>
+                            Podemos ver que el sistema nos indica mediante la llamada a la promesa si se ha 
+                            cumplido o no la acción que necesitabamos, que en el caso de nuestro código son 5 elementos 
+                            numéricos aleatorios que sumen 100. Cuando esto se produce o no se produce, nos avisa.
+                        </p>
+                        <p>
+                            Aunque aqui el método .then() lo utilizamos para obtener el resultado 
+                            , el resultado de una promesa 
+                            podría ser pasado como entrada a la siguiente promesa en la cadena 
+                            ".then(result => siguientePromesa)".  
+
+                        </p>
+                        <p>
+                            Finalmente implementa en una promesa el método <strong>catch</strong> para retornar los errores.
+                        </p>
+                        <p>
+                            Además de hacer el código más legible, las promesas permiten manejar acciones de forma paralela.
+                            Para ello existen las instrucciones "Promise.all()", que espera a que todas las promesas se cumplan
+                             antes de continuar y "Promise.race()" que resuelve todo en cuanto una de las promesas se cumple.
+                        </p>
+                    </div>
+
+                    <div class="more-references">
+                        More references: <a href="https://lenguajejs.com/javascript/asincronia/promesas/">Promesas en JS</a>                          
+                    </div>      
+                    
+                    <div class="goto-top-link">
+                        <a href="#Concepts">Concepts Menu ^</a>
+                    </div>  
+                </div>                
+                
+                <div id="to-eight">
+                    <h3>3.8. ¿Qué hacen async y await por nosotros? </h3>   
+                    <p>
+                        En las últimas versiones de Javascript se han introducido las funciones 
+                        <strong>async</strong> y <strong>await</strong>. La base de estas funciones son 
+                        las mencionadas <strong>Promesas</strong> y estas funciones simplifican aún más la 
+                        gestión del código asincrónico, mejorando su legibilidad.
+                    </p>
+                    <p>
+                        En principio podría parecer que esto no es tan necesario, pero imaginemos que 
+                        tenemos una tienda online con pasarla de pago. Entonces, antes de dar paso al pedido debemos,
+                        sí o sí, estar seguros de que el pago se ha aceptado.
+                    </p>
+                    <p>
+                        Aunque como en el ejemplo de las promesas no es este el caso donde suele usarse, 
+                        en este caso imaginemos que necesitamos una serie de números que sumen la cantidad que le indicamos,
+                        en nuestro ejemplo 5 elementos y la cantidad que han de sumar 100.
+                    </p>
+                    <p>
+                        En el ejemplo, si no suma 100 es cuando pedimos que se ejecute el código siguiente que es el 
+                        que hace que los números aleatorios iniciales sean corregidos.
+                    </p>
+                    <p>
+                        <strong>async function randomOrder</strong> es la función que creamos que llama a cada una de las
+                        funciones con <strong>await</strong>. Como el temporizador de la acción declarada primera es menor, da tiempo
+                        a que se ejecute la segunda función, sino, daría un error.
+                    </p>
+                    <pre class="hljs"><code><div class="div-code">
+function randomValues() {
+    try{
+        class Randomize {
+            constructor(len, max_value) {
+                this.len = len;
+                this.max_value = max_value;
+            }
+            valuesPush(){
+                var sum_of_values = 0 ;
+                var list_of_values = [];
+        
+                do {
+                    let value = Math.round(Math.round(Math.random()* (this.max_value/this.len)));
+                    sum_of_values= Number(sum_of_values) + Number(value);
+                    list_of_values.push(value);
+                } while (sum_of_values < this.max_value && list_of_values.length < this.len);   
+            
+                while (list_of_values.length < Number(this.len)) {
+                    list_of_values.push(0);
+                }
+                this.list_of_values = list_of_values;
+                return list_of_values;
+            }
+            sum = () => {
+                let obj = this.list_of_values;
+                let reducer = (accumulator, curr) => accumulator + curr;
+                return Number((obj.reduce(reducer))); 
+            }
+        }
+        const len = 5;
+        const max_value_sum = 100;
+
+        let random_object = new Randomize(len, max_value_sum);
+        const makeItRandom = () => {
+            return new Promise((resolve, reject) => {
+            setTimeout(() => {
+
+                var list_of_values = random_object.valuesPush();
+                var sum_of_values = random_object.sum();
+                let queda = max_value_sum - Number(sum_of_values); 
+
+
+                if (Math.abs(queda)!==0) {
+                    resolve(`No hemos obtenido la suma máxima deseada, ${max_value_sum}. Hemos obtenido ${sum_of_values} con ${list_of_values}`);
+                } else{
+                    reject(`Hemos obtenido la suma máxima deseada, ${max_value_sum}. Hemos obtenido ${sum_of_values} con ${list_of_values}`);
+                }
+            }, 1000); 
+            });
+        }
+
+        const updateToMax = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const len = 5;
+                    const max_value_sum = 100;
+                    var sum_of_values = random_object.sum() ;
+                    var list_of_values = random_object.list_of_values;
+                    let queda = max_value_sum - Number(sum_of_values); 
+                    let values_length = list_of_values.length;
+
+                    let resto = 0;
+                    let mod_resto = queda;
+                    if (Math.abs(queda) < len){
+                        resto = 0;
+                        mod_resto = queda;
+                    }else{
+                        resto = Math.round(Math.floor(queda/values_length));
+                        mod_resto = queda % values_length;
+                    }
+                
+                    for (list_of_value in list_of_values){
+                        list_of_values[list_of_value]= list_of_values[list_of_value] + resto;
+                    }
+
+                    if (queda < 0){
+                        let value = Math.max(...list_of_values);
+                        let position = list_of_values.indexOf(value);
+                        list_of_values[position] = list_of_values[position] + mod_resto;  
+                        }else{
+                        let value = Math.min(...list_of_values);
+                        let position = list_of_values.indexOf(value);     
+                        list_of_values[position] = list_of_values[position] + mod_resto;         
+                    }
+                    let reducer = (accumulator, curr) => accumulator + curr;
+                    let second_sum =  Number((list_of_values.reduce(reducer))); 
+                    let second_queda = max_value_sum - Number(second_sum); 
+                    if (Math.abs(second_queda)!==0) {
+                        reject(`No hemos obtenido la suma máxima deseada, ${max_value_sum}. Hemos obtenido ${second_sum} con ${list_of_values}`);
+                    } else{
+                        resolve(`Hemos obtenido la suma máxima deseada, ${max_value_sum}. Hemos obtenido ${second_sum} con ${list_of_values}`);
+                    }            
+                }, 2000);
+            });
+        }
+        async function randomOrder (makeItRandom, updateToMax) {
+            let output = '';
+            const returnedLogin = await makeItRandom;
+            output = returnedLogin;
+            alert(output);
+            const returnedUpdateAccount = await updateToMax;
+            output =  returnedUpdateAccount};
+            alert(output);
+            
+        }
+            
+        return randomOrder(makeItRandom(), updateToMax());        
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }         
+};
+randomValues();
+
+
+                        </div></code></pre>
+
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div>
+ 
+                    <div class="more-references">
+                        More references: <a href="https://es.javascript.info/async/">JS Promesas y async/await</a>                          
+                    </div>
+
+                    <div class="goto-top-link">
+                        <a href="#Concepts">Concepts Menu ^</a>
+                    </div>  
+                </div>
+
+            </div>
+
+
+            <div id="Homeworks">
+                <h2>4. HOMEWORKS (If you want to)</h2>
+                <p>
+                    De los siguientes códigos corrige los dos errores, indicados con "***" para obtener el valor deseado.
+                    Puede ser que necesites incluir un valor o eliminar un valor cercano a "***".
+                </p>
+                <p>
+                    Por ejemplo, si aparece "for (var i = 0; i < attributes.length i***)", tendríamos que sustituir "***"
+                    por "++" para que el código fuera correcto.
+                </p>                
+                <div class="explain">
+                    <h3>Bucles</h3>
+                    <pre class="hljs"><code><div class="div-code">    
+function goAcrossFor () {
+    try {
+        const attributes=['Resistance', 'Easiness cleaning', 'sustanbility values', 'Cool'];
+        let lista =[];
+        for (var i = 0; i < attributes.length(***); i++) {
+            lista.push(`${i} - ${attributes[***]}`);
+        }
+        return lista;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+};
+goAcrossFor ();
+                        
+                    </div></code></pre>
+                    <div class="container-open-tester">
+                        <a class="open-tester" href="#">Open Code Tester</a>
+                    </div>  
+                </div>
+                <div class="explain">
+                    <pre class="hljs"><code><div class="div-code">    
+function goAcrossWhile () {
+    try {
+        let len = 10;
+        let max_value_sum = 100;
+        let ratio = Number(max_value_sum/len);
+        let sum_of_values = 0;
+        let list_of_values = [];
+
+        do {
+            value = Math.round(Math.ceil(***random()* ratio));
+            sum_of_values = Number(sum_of_values) + Number(value);
+            list_of_values.push(value);
+        } *** (sum_of_values < max_value_sum && list_of_values.length < len);
+
+        return list_of_values;
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }  
+};
+goAcrossWhile ();
+                    </div></code></pre>
+                    <div class="container-open-tester">
+                        <a class="open-tester" href="#">Open Code Tester</a>
+                    </div>
+                </div>
+                <div class="explain">
+                    <h3>Tipos de variables</h3>
+                    <pre class="hljs"><code><div class="div-code">    
+function tryVariableTypes () {
+    try {
+        let list_of_values = [];
+        var taste = 'mint';
+        let len = 10;
+        const max_value_sum = 100;
+        list_of_values.push(`original try, taste: ${taste}, longitud: ${len}, max value: ${max_value_sum}.`);
+        var taste = 'strawberry';
+        list_of_values.push(`first change taste, taste: ${taste}, longitud: ${len}, max value: ${max_value_sum}.`);
+        ***max_value_sum = 150;
+        ***len = 15;
+        list_of_values.push(`second change len, taste: ${taste}, longitud: ${len}, max value: ${max_value_sum}.`);
+        return list_of_values;         
+    }catch (err) {
+        document.getElementById('code-error').innerHTML = err.message;
+    }
+
+};
+tryVariableTypes ();
+                        </div></code></pre>
+                        <div class="container-open-tester">
+                            <a class="open-tester" href="#">Open Code Tester</a>
+                        </div> 
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+       
+</body>
+</html>

@@ -1,0 +1,35 @@
+#abs-code-tester{
+    position: absolute;
+    display:flex;
+    flex-direction: column;
+    width: 60vw;
+    padding: 20px;
+    background-color:rgb(95, 81, 84);
+    z-index: 2;
+    visibility: hidden;
+}
+#abs-code-tester > div{
+    color:#f8f8f8;
+}
+#code-txt-area {
+    /* columns: 20; */
+    min-width: 100%;
+    padding: 20px 0px;
+}
+.code-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+}
+#div-tester-code-output {
+    margin-top: 10px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+.hidden-div {
+    visibility: hidden;
+}
+.open-tester {
+    color:blue;
+    text-decoration: underline;
+}

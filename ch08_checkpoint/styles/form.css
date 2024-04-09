@@ -1,0 +1,91 @@
+/* contact -form */
+
+.login-instruccions-wrapper {
+    padding: 10px 20px 30px 20px;;
+}
+
+.form-section {
+    width: 700px;;
+}
+.form > .form-group  {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: stretch;
+    /* margin-top: 30px; */
+    /* margin-bottom: 10px;
+    padding: 1em; */
+}
+
+
+.form input {
+    font-size: 1.1em;
+    font-family: inherit;
+    color: black;
+    padding: 0.5em 1em;
+    border: none;
+    border-bottom: 3px solid darkgrey;
+    border-radius: 2px;
+    width: 300px;
+    display: block;
+    /* aqui es necesario para crear la animación, dice */
+    transition: all 0.3s;
+}
+
+.form input:focus {
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.1);
+    border-bottom: 3px solid rgb(219, 35, 60);
+}
+
+.form input::-webkit-input-placeholder {
+    color: darkgrey;
+}
+
+.form input:focus::-webkit-input-placeholder {
+    /* visibility: hidden;
+    opacity: 0; */
+    /* aunque este hombre pone color:transparent  */
+    color: transparent;
+}
+
+.form label {
+    font-size: 1.0rem;
+    font-weight: 500;
+    margin-left: 1rem;
+    margin-top: 0.2rem;
+    padding-bottom: 2px;
+    display: block;
+    /* poniendolo como block nos permite tratarlo como un div */
+    /* transition: all 0.3s; */
+    color: rgb(219, 35, 60);
+    /* Con estas dos instrucciones hacemos que no se vean los labels */
+    /* visibility: hidden;
+    opacity: 0; */
+}
+
+.form select {
+    font-size: 1em;
+    font-family: inherit;
+    color: rgba(35, 16, 144, 0.872);
+    padding: 0.1em 1em;
+    border: none;
+    border: 3px solid darkgrey;
+    border-radius: 2px;
+    width: 350px;
+    display: block;
+}
+
+@media (min-width: 769px) {
+
+    .form > .form-group  {
+        display: flex;
+        flex-direction: row;
+        justify-content: stretch;
+        /* margin-top: 30px; */
+        margin-bottom: 10px;
+        padding: 1em;
+    }
+    .form label {
+        padding-bottom: 0px;
+    }
+}
