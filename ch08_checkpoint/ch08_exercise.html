@@ -1183,9 +1183,16 @@ tryVariableTypes ();
 
                     <div class="explain">
                         <h4>Para combinar arrays</h4>
-                        <p>
-                            <div class="color-red">NO SALE BIEN LA DIFERENCIA</div>
+                        <p> 
+                            Si usamos la instrucción "push" sobre un array para incluirlo en otro,
+                            lo incluirá pero como un elemento dentro del array, no de forma separada.
                         </p>
+                        <p>
+                            Es decir, en principio, new_books, será incorporado a library_books, pero
+                            las dos unidades que conforman new_books no entrarán en el array library_books 
+                            como dos elementos, sino como uno solo.
+                        </p>
+                        <div class="color-red">en el tester no se aprecia la DIFERENCIA visual</div>
                         <pre class="hljs"><code><div class="div-code">
 function spreadTester() {
     try {
@@ -1196,7 +1203,7 @@ function spreadTester() {
 
         library_books = ['Coma', 'The last unicorn', 'The Great Gatsby', 'Fiesta'];
         library_books.push(...new_books);
-        output = `First output: ${output}. Second output: ${library_books}.`;
+        output = `First output: ${output}, de ${output.length} elementos. Second output: ${library_books}, de ${library_books.length} elementos.`;
         return output;
     }catch (err) {
         document.getElementById('code-error').innerHTML = err.message;
@@ -1282,43 +1289,14 @@ spreadTester();
                     <div class="explain">
                         <h4>Deconstrucción de objetos</h4>
                         <p>
-                            <div class="color-red">
-                                NO FUNCINA, me devuelve {(intermediate value)(intermediate value)(intermediate value)(intermediate value)} is not iterable
-                                undefined
-                            </div>
+                            Nos permite extraer los parámetros anidados. En este caso, serían las
+                            direcciones.
                         </p>
-                        <div id="prueba"></div>
-                        <script>
-function spreadTester() {
-    try {
-        const [name, company, ...locations] = {
-            name: 'The secret place',
-            company: 'Friendly Books S:L.',
-            location_1: 'La Castellana 28, Madrid 28046',
-            location_2: 'Calle de los Abades 6, Madrid 28012'
-        }
-        return locations;
-    }catch (err) {
-        // document.getElementById('code-error').innerHTML = err.message;
-    }
-};
-// document.getElementById("prueba").innerHTML = spreadTester();
-
-const { starter, closer, ...relievers } = {
-    starter: 'Verlander',
-    closer: 'Giles',
-    relief_1: 'Morton',
-    relief_2: 'Gregerson'
-  }
-
-  document.getElementById("prueba").innerHTML = relievers;
-//   console.log(closer);
-//   alert(relievers);
-                        </script>
+ 
                         <pre class="hljs"><code><div class="div-code">
 function spreadTester() {
     try {
-        const [name, company, ...locations] = {
+        const {name, company, ...locations} = {
             name: 'The secret place',
             company: 'Friendly Books S:L.',
             location_1: 'La Castellana 28, Madrid 28046',
